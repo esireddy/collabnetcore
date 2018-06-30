@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <form novalidate #form="ngForm">
+        <fieldset>
+          <legend class="text-info">Add a Chit</legend>
+          <div class="form-group">
+            <mat-form-field>
+              <input matInput placeholder="Chit Name" name="chitName" [(ngModel)]="model.name" required>
+              <mat-error>Chit name is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field>
+              <input matInput placeholder="Chit Value" name="chitValue" [(ngModel)]="model.value" required>
+              <mat-error>Chit value is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field>
+              <input matInput placeholder="NoOfMonths" name="noOfMonths" [(ngModel)]="model.noOfMonths" required>
+              <mat-error>Number of users is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field>
+              <input matInput placeholder="NoOfUsers" name="noOfUsers" [(ngModel)]="model.noOfUsers" required>
+              <mat-error>Number of months is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="addChit()">Create Chit</button>
+          </div>
+          <div class="form-group">
+            <label class="text-info">{{lblmsg}}</label>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

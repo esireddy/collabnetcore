@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Karla');
+
+body{
+    font-family: 'Karla', sans-serif;
+}
+// This affects dollar icon color
+.fa_custom{   
+    color: #be4bdb;
+    // color: #4c6ef5;
+    // color: #f783ac;
+}
+
+// on hover dropdownmenu - onclick of each item maintain background color white
+.dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: white;
+}
+
+.mat-form-field, .mat-raised-button, .mat-select, .mat-option {
+    font-family: 'Karla', sans-serif;
+}
+
+.mat-table, .mat-paginator, .mat-paginator-page-size .mat-select-trigger {
+    font-family: 'Karla', sans-serif;
+}
