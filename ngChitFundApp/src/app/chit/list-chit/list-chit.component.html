@@ -1,17 +1,17 @@
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title text-primary" *ngIf="dataSource.data.length!==0">Chit List</h5>
+    <h5 class="card-title text-primary font-weight-bold" *ngIf="dataSource.data.length!==0">Chit List</h5>
     <h5 class="card-title text-info" *ngIf="dataSource.data.length===0">No Chits Available</h5>
-    <div class="container" [hidden]="dataSource.data.length===0">
+    <div class="container" [hidden]="chits.length===0">
       <div class="row">
-        <div class="col-3">
+        <div class="col-2">
           <div class="form-group">
             <mat-form-field>
               <input matInput placeholder="Search By Name" (keyup)="filterByName($event.target.value)">
             </mat-form-field>
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-2">
             <div class="form-group">
               <mat-form-field>
                 <input matInput placeholder="Search By Value" (keyup)="filterByValue($event.target.value)">
@@ -19,8 +19,8 @@
             </div>
           </div>
       </div>
-      <div class="row">
-        <div class="col-12">
+      <div class="row" [hidden]="dataSource.data.length===0">
+        <div class="col-10">
           <div>
             <table class="table mat-elevation-z8" mat-table [dataSource]="dataSource" matSort>
               <ng-container matColumnDef="name">

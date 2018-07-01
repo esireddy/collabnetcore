@@ -46,6 +46,7 @@ export class ListChitComponent implements OnInit {
   }
 
   filterByValue(searchText: string) {
+    console.log(searchText);
     searchText = searchText.trim();
     if (!searchText) {
       this.dataSource.data = this.chits;
