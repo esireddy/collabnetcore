@@ -1,0 +1,72 @@
+<!-- breadcrumb start -->
+<!-- ================ -->
+
+<div class="breadcrumb-container">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <i class="fa fa-home pr-2"></i>
+        <a routerLink='/home' (click)="refresh()">Home</a>
+      </li>
+      <li class="breadcrumb-item active">Sign Up</li>
+    </ol>
+  </div>
+</div>
+<!-- breadcrumb end -->
+
+<!-- main-container start -->
+<!-- ================ -->
+
+<div class="container">
+  <div class="row">
+    <!-- main start -->
+    <!-- ================ -->
+    <div class="col-9 col-sm-6 col-lg-3">
+
+      <!-- page-title start -->
+      <!-- ================ -->
+      <h1 class="page-title">Sign Up</h1>
+      <div class="separator-2"></div>
+      <!-- page-title end -->
+
+      <!-- Login Form Start -->
+      <!-- ============================================================================== -->
+      <form class="margin-clear" #form="ngForm">
+
+        <div class="form-group has-feedback">
+          <mat-form-field>
+            <input matInput placeholder="First name" name="firstname" [(ngModel)]="model.firstname" required>
+            <mat-error>First name is required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Middle Initial" name="mInitial" [(ngModel)]="model.mInitial">
+            <mat-error>Middle Initial is required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Last name" name="lastname" [(ngModel)]="model.lastname" required>
+            <mat-error>Last name is required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Username" name="username" [(ngModel)]="model.username" required>
+            <i class="fa fa-user form-control-feedback"></i>
+            <mat-error>Username is required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Password" name="password" [(ngModel)]="model.password" required>
+            <i class="fa fa-lock form-control-feedback"></i>
+            <mat-error>Password is required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Email" name="email" [(ngModel)]="model.email" required>
+            <i class="fa fa-envelope form-control-feedback"></i>
+            <mat-error>Email is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-default btn-sm">Sign Up</button>
+        </div>
+      </form>
+      <!-- Login Form End -->
+    </div>
+  </div>
+</div>
