@@ -1,3 +1,43 @@
-<p>
-  page-not-found works!
-</p>
+<!-- breadcrumb start -->
+<!-- ================ -->
+
+<div class="breadcrumb-container">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <i class="fa fa-home pr-2"></i>
+        <a routerLink='/home' (click)="refresh();">Home</a>
+      </li>
+      <li class="breadcrumb-item active">Page 404</li>
+    </ol>
+  </div>
+</div>
+<!-- breadcrumb end -->
+
+<!-- main-container start -->
+<!-- ================ -->
+<section class="main-container light-gray-bg text-center margin-clear">
+
+  <div class="container">
+    <div class="row justify-content-lg-center">
+
+      <!-- main start -->
+      <!-- ================ -->
+      <div class="main col-lg-6 pv-40">
+        <h1 class="page-title extra-large">
+          <span class="text-default">404</span>
+        </h1>
+        <h2 class="mt-4">Ooops! Page Not Found</h2>
+        <p class="lead">The requested URL was not found on this server. Make sure that the Web site address displayed in the address bar
+          of your browser is spelled and formatted correctly.</p>
+
+        <a class="btn btn-default btn-animated btn-lg" routerLink='/home' (click)="refresh();">Return Home
+          <i class="fa fa-home"></i>
+        </a>
+      </div>
+      <!-- main end -->
+
+    </div>
+  </div>
+</section>
+<!-- main-container end -->

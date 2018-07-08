@@ -11,5 +11,8 @@ export class PageNotFoundComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
+  refresh(): void {
+    window.location.reload();
+  }
 }

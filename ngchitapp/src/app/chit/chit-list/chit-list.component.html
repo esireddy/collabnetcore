@@ -40,7 +40,9 @@
           <table class="table table-colored mat-elevation-z8" mat-table [dataSource]="dataSource" matSort>
             <ng-container matColumnDef="name">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-              <td mat-cell *matCellDef="let chit">{{chit.name | titlecase }}</td>
+              <td mat-cell *matCellDef="let chit">
+                <a [routerLink]="chit.id">{{chit.name | titlecase }}</a>
+              </td>
             </ng-container>
 
             <ng-container matColumnDef="value">
@@ -66,16 +68,6 @@
             <ng-container matColumnDef="createDate">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Create Date</th>
               <td mat-cell *matCellDef="let chit">{{chit.createDate | date:'MM/dd/yyyy'}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="startDate">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</th>
-              <td mat-cell *matCellDef="let chit">{{ (chit.startDate) ? (chit.startDate | date: 'MM/dd/yyyy') : 'N/A'}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="endDate">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Closing Date</th>
-              <td mat-cell *matCellDef="let chit">{{ (chit.endDate) ? (chit.endDate | date: 'MM/dd/yyyy') : 'N/A'}}</td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="columsToDisplay"></tr>

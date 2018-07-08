@@ -16,6 +16,10 @@ import { BannerSlideshowComponent } from './home/banner-slideshow/banner-slidesh
 import { FooterComponent } from './footer/footer/footer.component';
 import { LoginService } from './user/services/login.service';
 
+// social-login
+import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+import { getAuthServiceConfigs } from './social-login-config';
+// social-login-end
 
 @NgModule({
   declarations: [
@@ -33,11 +37,21 @@ import { LoginService } from './user/services/login.service';
     HttpClientModule,
     UserModule,
     ChitModule,
+    // social-login-start
+    SocialLoginModule,
+    // social-login-end
     AppRoutingModule
   ],
   providers: [
-    LoginService
+    LoginService,
+    // social-login-start
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }
+    // social-login-end
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

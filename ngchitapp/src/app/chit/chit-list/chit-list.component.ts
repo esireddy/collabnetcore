@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
-import { ChitService } from '../services/chit.service';
 import { IGetChit } from '../models/i-get-chit';
 import { ErrorInfo } from '../../500/error-info';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-chit-list',
@@ -13,11 +13,11 @@ export class ChitListComponent implements OnInit {
 
   dataSource = new MatTableDataSource();
 
-  columsToDisplay = ['name', 'value', 'noOfMonths', 'noOfUsers', 'statusText', 'createDate', 'startDate', 'endDate'];
+  columsToDisplay = ['name', 'value', 'noOfMonths', 'noOfUsers', 'statusText', 'createDate'];
 
   chits$: IGetChit[];
 
-  constructor(private chitService: ChitService) { }
+  constructor(private route: ActivatedRoute) { }
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -29,11 +29,12 @@ export class ChitListComponent implements OnInit {
   }
 
   getChits(): void {
-    this.chitService
-      .getChits()
-      .subscribe(
-        (data: IGetChit[]) => { this.chits$ = data; this.dataSource.data = data; console.log(data); },
-        (err: ErrorInfo) => { console.log(err); });
+    this.route.data.subscribe((data: IGetChit[]) => {
+      this.chits$ = data['chitlist'];
+      this.dataSource.data = data['chitlist'];
+      console.log(data['chitlist']);
+    },
+      (err: ErrorInfo) => { console.log(err); });
   }
 
 }
