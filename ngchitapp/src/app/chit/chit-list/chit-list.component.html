@@ -1,0 +1,89 @@
+<!-- breadcrumb start -->
+<!-- ================ -->
+
+<div class="breadcrumb-container">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <i class="fa fa-home pr-2"></i>
+        <a routerLink='/home' (click)="refresh()">Home</a>
+      </li>
+      <li class="breadcrumb-item active">Chits</li>
+    </ol>
+  </div>
+</div>
+<!-- breadcrumb end -->
+
+<!-- main-container start -->
+<!-- ================ -->
+<section class="main-container">
+
+  <div class="container">
+    <div class="row">
+
+      <!-- main start -->
+      <!-- ================ -->
+      <div class="main col-lg-9">
+
+        <!-- page-title start -->
+        <!-- ================ -->
+        <!-- <h1 class="page-title">Chits</h1> -->
+        <h1 *ngIf="dataSource.data.length === 0">No Chits Available</h1>
+        <h1 *ngIf="dataSource.data.length > 0">Chits</h1>
+        <div class="separator-2"></div>
+        <!-- page-title end -->
+
+        <!-- Tables start -->
+        <!-- ============================================================================== -->
+
+        <div class="table-responsive" *ngIf="dataSource.data.length > 0">
+          <table class="table table-colored mat-elevation-z8" mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+              <td mat-cell *matCellDef="let chit">{{chit.name | titlecase }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="value">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Value</th>
+              <td mat-cell *matCellDef="let chit">{{chit.value | currency: 'INR':true}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="noOfMonths">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>NoOfMonths</th>
+              <td mat-cell *matCellDef="let chit">{{chit.noOfMonths}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="noOfUsers">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>NoOfUsers</th>
+              <td mat-cell *matCellDef="let chit">{{chit.noOfUsers}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="statusText">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+              <td [class.text-info]="[chit.statusText===New]" mat-cell *matCellDef="let chit">{{chit.statusText}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="createDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Create Date</th>
+              <td mat-cell *matCellDef="let chit">{{chit.createDate | date:'MM/dd/yyyy'}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="startDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</th>
+              <td mat-cell *matCellDef="let chit">{{ (chit.startDate) ? (chit.startDate | date: 'MM/dd/yyyy') : 'N/A'}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="endDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Closing Date</th>
+              <td mat-cell *matCellDef="let chit">{{ (chit.endDate) ? (chit.endDate | date: 'MM/dd/yyyy') : 'N/A'}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columsToDisplay"></tr>
+            <tr mat-row *matRowDef="let row; columns: columsToDisplay"></tr>
+          </table>
+          <div>
+            <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+          </div>
+        </div>
+      </div>
+      <!-- main end -->

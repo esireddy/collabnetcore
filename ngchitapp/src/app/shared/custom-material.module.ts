@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule, MatTableModule, MatInputModule, MatButtonModule, MatSortModule, MatPaginatorModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatSortModule, MatPaginatorModule } from '@angular/material';
 
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     MatFormFieldModule,
-    MatTableModule,
     MatInputModule,
     MatButtonModule,
+    MatTableModule,
     MatSortModule,
     MatPaginatorModule
   ],
   exports: [
     BrowserAnimationsModule,
     MatFormFieldModule,
-    MatTableModule,
     MatInputModule,
     MatButtonModule,
+    MatTableModule,
     MatSortModule,
     MatPaginatorModule
   ],

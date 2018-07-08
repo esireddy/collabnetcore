@@ -7,6 +7,7 @@ using ChitCoreApi.Pattern;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,14 +26,24 @@ namespace ChitCoreApi.Middlewares
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            services.AddMvc();
-
             services.AddCors(setupAction => setupAction.AddPolicy("Allowngchitapp", policy =>
             {
                 policy.AllowAnyOrigin();
                 policy.AllowAnyHeader();
                 policy.AllowAnyMethod();
             }));
+
+            //services.AddIdentity<ApplicationUser, IdentityRole>()
+            //    .AddEntityFrameworkStores<ChitDbContext>()
+            //    .AddDefaultTokenProviders();
+
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+            });
+
+            services.AddMvc();
         }
 
         public static void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -57,11 +68,13 @@ namespace ChitCoreApi.Middlewares
                 .ForMember(dest => dest.StatusText, opt => opt.MapFrom(src => (ChitStatus)src.StatusId));
             });
 
-            app.UseMvc();
+            app.UseStatusCodePages();
 
             app.UseCors("Allowngchitapp");
 
-            app.UseStatusCodePages();
+            app.UseAuthentication();
+
+            app.UseMvc();
 
             app.Run(async (context) =>
             {
