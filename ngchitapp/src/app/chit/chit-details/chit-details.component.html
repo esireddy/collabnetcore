@@ -1,3 +1,70 @@
-<p>
-  chit-details works!
-</p>
+<!-- breadcrumb start -->
+<!-- ================ -->
+<div class="breadcrumb-container">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <i class="fa fa-home pr-2"></i>
+        <a routerLink='/home'>Home</a>
+      </li>
+      <li class="breadcrumb-item active">Chits</li>
+      <li class="breadcrumb-item active">Chit Details</li>
+    </ol>
+  </div>
+</div>
+<!-- breadcrumb end -->
+
+<!-- main-container start -->
+<!-- ================ -->
+<div class="container">
+  <div class="row">
+    <!-- main start -->
+    <!-- ================ -->
+    <div class="main col-9">
+
+      <!-- page-title start -->
+      <!-- ================ -->
+      <h1 class="page-title">Chit Details</h1>
+      <div class="separator-2"></div>
+      <!-- page-title end -->
+      <div class="row">
+        <div class="col-md-4">
+          <p class="small">
+            <strong>Name: </strong>
+            <span>{{chit.name | titlecase}}</span>
+            <br>
+            <strong>Value: </strong>
+            <span>{{chit.value}}</span>
+            <br>
+            <strong>NoOfMonths: </strong>
+            <span>{{chit.noOfMonths}}</span>
+            <br>
+            <strong>NOfUsers: </strong>
+            <span>{{chit.noOfUsers}}</span>
+          </p>
+        </div>
+        <div class="col-md-4">
+          <p class="small">
+            <strong>Status: </strong>
+            <span [class.text-info]="[chit.statusText===New]">{{chit.statusText}}</span>
+            <br>
+            <strong>Create Date: </strong>
+            <span>{{(chit.createDate)? (chit.createDate | date:'MM/dd/yyyy'):'N/A'}}</span>
+            <br>
+            <strong>Start Date: </strong>
+            <span>{{(chit.startDate)? (chit.startDate | date:'MM/dd/yyyy'):'N/A'}}</span>
+            <br>
+            <strong>Closing Date: </strong>
+            <span>{{(chit.endDate)? (chit.endDate | date:'MM/dd/yyyy'):'N/A'}}</span>
+          </p>
+        </div>
+      </div>
+      <hr>
+      <div class="text-right">
+        <!-- <button class="btn btn-print btn-default-transparent btn-animation btn-animation--slide-horizontal">Print </button> -->
+      </div>
+    </div>
+    <!-- main end -->
+  </div>
+</div>
+<!-- main-container end -->

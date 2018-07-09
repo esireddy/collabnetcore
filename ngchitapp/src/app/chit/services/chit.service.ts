@@ -34,6 +34,15 @@ export class ChitService {
       .catch(this.handleError);
   }
 
+  getChitById(id: number): Observable<IGetChit | ErrorInfo> {
+    const url = this.baseUrl + `/${id}`;
+    return this.http
+      .get<IGetChit>(
+        url,
+        { headers: new HttpHeaders({ 'Accept': 'application/json' }) })
+      .catch(this.handleError);
+  }
+
   private handleError(err: HttpErrorResponse): Observable<ErrorInfo> {
     this.errorObj.errorNumber = err.status;
     this.errorObj.message = err.error;

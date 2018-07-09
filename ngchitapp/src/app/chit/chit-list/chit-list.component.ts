@@ -29,12 +29,13 @@ export class ChitListComponent implements OnInit {
   }
 
   getChits(): void {
-    this.route.data.subscribe((data: IGetChit[]) => {
-      this.chits$ = data['chitlist'];
-      this.dataSource.data = data['chitlist'];
-      console.log(data['chitlist']);
-    },
-      (err: ErrorInfo) => { console.log(err); });
+    this.route
+      .data
+      .subscribe((data: IGetChit[]) => {
+        this.chits$ = data['chitlist'];
+        this.dataSource.data = data['chitlist'];
+      },
+        (err: ErrorInfo) => { console.log(err); });
   }
 
 }
