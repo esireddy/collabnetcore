@@ -4,6 +4,9 @@ using ChitCoreApi.ChitMgmt.post.v1.Dto_s;
 using ChitCoreApi.ChitMgmt.post.v1.Models;
 using ChitCoreApi.Data;
 using ChitCoreApi.Pattern;
+using ChitCoreApi.Users.get.v1.Dto_s;
+using ChitCoreApi.Users.post.v1.Dto_s;
+using ChitCoreApi.Users.post.v1.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,10 +35,6 @@ namespace ChitCoreApi.Middlewares
                 policy.AllowAnyHeader();
                 policy.AllowAnyMethod();
             }));
-
-            //services.AddIdentity<ApplicationUser, IdentityRole>()
-            //    .AddEntityFrameworkStores<ChitDbContext>()
-            //    .AddDefaultTokenProviders();
 
             services.AddAuthentication().AddGoogle(googleOptions =>
             {
@@ -66,6 +65,9 @@ namespace ChitCoreApi.Middlewares
                 config.CreateMap<CreateChitDto, Chit>();
                 config.CreateMap<Chit, GetChitDto>()
                 .ForMember(dest => dest.StatusText, opt => opt.MapFrom(src => (ChitStatus)src.StatusId));
+
+                config.CreateMap<CreateUserDto, User>();
+                config.CreateMap<User, GetUserDto>();
             });
 
             app.UseStatusCodePages();

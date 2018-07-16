@@ -1,5 +1,6 @@
 ﻿using ChitCoreApi.ChitMgmt.Pattern;
 using ChitCoreApi.Data;
+using ChitCoreApi.Users.Pattern;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChitCoreApi.Pattern
@@ -18,11 +19,20 @@ namespace ChitCoreApi.Pattern
         {
             dbContext = _dbContext;
             Chits = new ChitRepository(_dbContext);
+            Users = new UserRepository(_dbContext);
         }
 
         #endregion Constructors
 
+        #region Properties
+
         public IChitRepository Chits { get; set; }
+
+        public IUserRepository Users { get; set; }
+
+        #endregion Properties
+
+        #region Methods
 
         public bool Complete()
         {
@@ -44,5 +54,7 @@ namespace ChitCoreApi.Pattern
         {
             dbContext.Dispose();
         }
+
+        #endregion Methods
     }
 }

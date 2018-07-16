@@ -28,41 +28,39 @@
 
       <!-- Login Form Start -->
       <!-- ============================================================================== -->
-      <form class="margin-clear" #form="ngForm">
+      <form class="margin-clear" #form="ngForm" (ngSubmit)="onSubmit(form);">
 
         <div class="form-group has-feedback">
           <mat-form-field>
-            <input matInput placeholder="First name" name="firstname" [(ngModel)]="model.firstname" required>
+            <input matInput placeholder="First Name" name="firstname" [(ngModel)]="model.firstname" (keyup)="capitalize($event);" required>
             <mat-error>First name is required</mat-error>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Middle Initial" name="mInitial" [(ngModel)]="model.mInitial">
+            <input matInput placeholder="Middle Initial" name="mInitial" [(ngModel)]="model.mInitial" (keyup)="capitalize($event);">
             <mat-error>Middle Initial is required</mat-error>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Last name" name="lastname" [(ngModel)]="model.lastname" required>
+            <input matInput placeholder="Last Name" name="lastname" [(ngModel)]="model.lastname" (keyup)="capitalize($event);" required>
             <mat-error>Last name is required</mat-error>
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Username" name="username" [(ngModel)]="model.username" required>
-            <i class="fa fa-user form-control-feedback"></i>
-            <mat-error>Username is required</mat-error>
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Password" name="password" [(ngModel)]="model.password" required>
-            <i class="fa fa-lock form-control-feedback"></i>
-            <mat-error>Password is required</mat-error>
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Email" name="email" [(ngModel)]="model.email" required>
             <i class="fa fa-envelope form-control-feedback"></i>
             <mat-error>Email is required</mat-error>
           </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="PhoneNumber" name="phoneNumber" [(ngModel)]="model.phoneNumber" required>
+            <i class="fa fa-phone form-control-feedback"></i>
+            <mat-error>PhoneNumber is required</mat-error>
+          </mat-form-field>
         </div>
         <div class="form-group">
           <button class="btn btn-default btn-sm">Sign Up</button>
         </div>
       </form>
+      <div class="alert alert-success" *ngIf="isUserCreated">
+        <strong>Success!</strong> Create User.
+      </div>
       <!-- Login Form End -->
     </div>
   </div>

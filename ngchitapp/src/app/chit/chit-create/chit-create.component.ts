@@ -4,13 +4,14 @@ import { NgForm } from '@angular/forms';
 import { ChitService } from '../services/chit.service';
 import { IGetChit } from '../models/i-get-chit';
 import { ErrorInfo } from '../../500/error-info';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-create-chit',
-  templateUrl: './create-chit.component.html',
-  styleUrls: ['./create-chit.component.scss']
+  selector: 'app-chit-create',
+  templateUrl: './chit-create.component.html',
+  styleUrls: ['./chit-create.component.scss']
 })
-export class CreateChitComponent implements OnInit {
+export class ChitCreateComponent implements OnInit {
 
   model = new CreateChit();
 
@@ -18,7 +19,7 @@ export class CreateChitComponent implements OnInit {
 
   isChitCreated = false;
 
-  constructor(private chitService: ChitService) { }
+  constructor(private chitService: ChitService, private titlecasePipe: TitleCasePipe) { }
 
   ngOnInit() {
   }
@@ -37,6 +38,12 @@ export class CreateChitComponent implements OnInit {
             }, 2000);
           },
           (err: ErrorInfo) => { console.log(err); });
+    }
+  }
+
+  capitalize(event: any): void {
+    if (event.target.name === 'name') {
+      this.model.name = this.titlecasePipe.transform(this.model.name);
     }
   }
 

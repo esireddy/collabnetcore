@@ -1,4 +1,5 @@
 ﻿using ChitCoreApi.ChitMgmt.post.v1.Models;
+using ChitCoreApi.Users.post.v1.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChitCoreApi.Data
@@ -14,6 +15,8 @@ namespace ChitCoreApi.Data
         #region Properties
 
         public DbSet<Chit> Chits { get; set; }
+
+        public DbSet<User> Users { get; set; }
 
         #endregion Properties
 

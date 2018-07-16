@@ -12,9 +12,10 @@ using System;
 namespace ChitCoreApi.Migrations
 {
     [DbContext(typeof(ChitDbContext))]
-    partial class ChitDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180714015250_modifychit")]
+    partial class modifychit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

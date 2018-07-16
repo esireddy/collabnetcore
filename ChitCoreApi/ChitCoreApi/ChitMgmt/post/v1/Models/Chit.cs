@@ -37,6 +37,12 @@ namespace ChitCoreApi.ChitMgmt.post.v1.Models
 
         public ChitStatus StatusId { get; set; } = ChitStatus.New;
 
+        public int ManagerId { get; set; }
+
+        public int Commission { get; set; }
+
+        public DateTime? AuctionDate { get; set; }
+
         #endregion Properties
     }
 }

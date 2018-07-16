@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateChitComponent } from './create-chit.component';
+import { ChitCreateComponent } from './chit-create.component';
 
-describe('CreateChitComponent', () => {
-  let component: CreateChitComponent;
-  let fixture: ComponentFixture<CreateChitComponent>;
+describe('ChitCreateComponent', () => {
+  let component: ChitCreateComponent;
+  let fixture: ComponentFixture<ChitCreateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateChitComponent ]
+      declarations: [ ChitCreateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateChitComponent);
+    fixture = TestBed.createComponent(ChitCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

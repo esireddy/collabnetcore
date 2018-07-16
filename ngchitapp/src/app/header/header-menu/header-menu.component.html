@@ -38,17 +38,38 @@
           <!-- ================ -->
           <div class="main-navigation main-navigation--mega-menu  animated">
             <nav class="navbar navbar-expand-lg navbar-light p-0">
+
+              <div class="navbar-brand clearfix hidden-lg-up">
+                <!-- logo -->
+                <div id="logo-mobile" class="logo">
+                  <a href="index.html">
+                    <img id="logo_img" src="assets/images/logo_light_blue.png" alt="The Project">
+                  </a>
+                </div>
+
+                <!-- name-and-slogan -->
+                <div class="site-slogan">
+                  Better Money Habits
+                </div>
+              </div>
+
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-1" aria-controls="navbar-collapse-1"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+
               <div class="collapse navbar-collapse" id="navbar-collapse-1">
                 <!-- main-menu -->
                 <ul class="navbar-nav ml-xl-auto">
 
-                  <!-- mega-menu start -->
+                  <!-- home-menu start -->
                   <li class="nav-item" routerLinkActive='active'>
                     <a routerLink='home' (click)="refresh();" class="nav-link">Home</a>
                   </li>
-                  <!-- mega-menu end -->
+                  <!-- home-menu end -->
 
-                  <!-- mega-menu start -->
+                  <!-- chit-menu start -->
                   <li class="nav-item dropdown ">
                     <a class="nav-link dropdown-toggle" routerLink='/chits' id="third-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Chits</a>
                     <ul class="dropdown-menu" aria-labelledby="third-dropdown">
@@ -60,7 +81,30 @@
                       </li>
                     </ul>
                   </li>
-                  <!-- mega-menu end -->
+                  <!-- chit-menu end -->
+
+                  <!-- users-menu start -->
+                  <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle" id="third-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Users</a>
+                    <ul class="dropdown-menu" aria-labelledby="third-dropdown">
+                      <li class="dropdown ">
+                        <a routerLink='/users/signup'>Add User </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <!-- users-menu end -->
+
+                  <!-- actions-menu start -->
+                  <li class="nav-item" routerLinkActive='active'>
+                    <a class="nav-link">Actions</a>
+                  </li>
+                  <!-- actions-menu end -->
+
+                  <!-- reports-menu start -->
+                  <li class="nav-item" routerLinkActive='active'>
+                    <a class="nav-link">Reports</a>
+                  </li>
+                  <!-- reports-menu end -->
                 </ul>
                 <!-- main-menu end -->
               </div>

@@ -8,7 +8,7 @@ namespace ChitCoreApi.ChitMgmt.Pattern
     {
         #region Constructors
 
-        public ChitRepository(ChitDbContext _dbContext) : base(_dbContext) { }
+        public ChitRepository(ChitDbContext dbContext) : base(dbContext) { }
 
         #endregion Constructors
 

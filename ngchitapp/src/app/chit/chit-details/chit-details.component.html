@@ -18,17 +18,14 @@
 <!-- ================ -->
 <div class="container">
   <div class="row">
-    <!-- main start -->
-    <!-- ================ -->
-    <div class="main col-9">
-
+    <div class="col-9">
       <!-- page-title start -->
       <!-- ================ -->
       <h1 class="page-title">Chit Details</h1>
       <div class="separator-2"></div>
       <!-- page-title end -->
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-sm-3">
           <p class="small">
             <strong>Name: </strong>
             <span>{{chit.name | titlecase}}</span>
@@ -43,7 +40,7 @@
             <span>{{chit.noOfUsers}}</span>
           </p>
         </div>
-        <div class="col-md-4">
+        <div class="col-sm-3">
           <p class="small">
             <strong>Status: </strong>
             <span [class.text-info]="[chit.statusText===New]">{{chit.statusText}}</span>
@@ -58,13 +55,110 @@
             <span>{{(chit.endDate)? (chit.endDate | date:'MM/dd/yyyy'):'N/A'}}</span>
           </p>
         </div>
+        <div class="col-sm-3">
+          <p class="small">
+            <strong>Manager: </strong>
+            <span>{{chit.manager? chit.manager:'N/A'}}</span>
+            <br>
+            <strong>Commission: </strong>
+            <span>{{chit.commission? chit.commission:'N/A'}}</span>
+            <br>
+            <strong>Auction Date: </strong>
+            <span>{{(chit.auctionDate)? (chit.auctionDate | date:'MM/dd/yyyy'):'N/A'}}</span>
+          </p>
+        </div>
+        <div class="col-sm-3">
+          <button class="btn btn-sm btn-group btn-default btn-animated">Start-Chit </button>
+        </div>
       </div>
-      <hr>
-      <div class="text-right">
-        <!-- <button class="btn btn-print btn-default-transparent btn-animation btn-animation--slide-horizontal">Print </button> -->
+      <div class="separator-2"></div>
+      <div class="row">
+        <!-- manager form section -->
+        <div class='col-sm-4'>
+          <form novalidate [formGroup]='managerForm'>
+            <h1 class='page-sub-title'>Add a Manager</h1>
+            <div class='separator-2'></div>
+            <div class="form-group">
+              <div class="form-check" *ngFor="let control of managerForm.get('managers').controls">
+                <input type="checkbox" class="form-check-input" checked (change)="onManagerChange(control.value)">
+                <label id='username'>
+                  {{control.value}}
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <mat-form-field>
+                <input matInput placeholder='Key in lastname' [formControl]='managerControl' [matAutocomplete]='autoManager'>
+                <mat-autocomplete #autoManager='matAutocomplete' [displayWith]='displayFn' (optionSelected)='onSelectManager($event.option.value);'>
+                  <mat-option *ngFor='let mngr of managers | async' [value]='mngr'>{{mngr.firstname}}</mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </div>
+            <div class="form-group">
+              <button class='btn btn-sm btn-group btn-default btn-animated' [disabled]='disableSaveManager'>Save Manager </button>
+            </div>
+          </form>
+        </div>
+        <!-- user form section -->
+        <div class="col-sm-4">
+          <form novalidate [formGroup]="usersForm">
+            <h1 class="page-sub-title">Add Users</h1>
+            <div class='separator-2'></div>
+            <div class="form-group">
+              <div class="form-check" *ngFor="let ctrl of usersForm.get('users').controls">
+                <input type="checkbox" class="form-check-input" checked (change)="onUserChange(ctrl.get('index').value)">
+                <label id='username'>
+                  {{ctrl.get('name').value}}
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <mat-form-field>
+                <input matInput placeholder='Key in lastname' [formControl]='userControl' [matAutocomplete]='autoUser'>
+                <mat-autocomplete #autoUser='matAutocomplete' [displayWith]='displayFn' (optionSelected)='onSelectUser($event.option.value);'>
+                  <mat-option *ngFor='let user of users | async' [value]='user'>{{user.firstname}}</mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </div>
+            <div class='form-group'>
+              <button class='btn btn-sm btn-group btn-default btn-animated' [disabled]='disableSaveUsers'>Save Users </button>
+            </div>
+          </form>
+        </div>
+        <!-- others -->
+        <div class="col-sm-4">
+          <form novalidate #form="ngForm">
+            <h1 class="page-sub-title">Set Others</h1>
+            <div class='separator-2'></div>
+            <div class="form-group">
+              <mat-form-field>
+                <input matInput placeholder='Manage Commision' name='commission' [(ngModel)]='commission' required>
+                <mat-error>Manage Commision is required</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder='Auction Date' [matDatepicker]='actionDatePicker' [min]='minDate' name='auctionDate' [(ngModel)]='auctionDate'
+                  required>
+                <mat-error>Auction Date is required</mat-error>
+                <mat-datepicker-toggle matSuffix [for]='actionDatePicker'>
+                </mat-datepicker-toggle>
+                <mat-datepicker #actionDatePicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class='form-group'>
+              <button class='btn btn-sm btn-group btn-default btn-animated'>Save Others</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+      <div class="separator-2"></div>
+      <div class="row">
+        <div class="col-1 text-right">
+          <button class="btn btn-gray btn-sm" [routerLink]="['/chits']">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
+        </div>
       </div>
     </div>
-    <!-- main end -->
   </div>
 </div>
 <!-- main-container end -->

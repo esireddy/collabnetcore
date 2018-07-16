@@ -8,3 +8,39 @@
 div .alert-success{
 width: 185px;
 }
+
+.page-sub-title {
+    font-size: small;
+}
+
+.mat-form-field {
+    width: 160px;
+}
+.mat-form-field, .mat-option, #username {
+    font-family: "Roboto", sans-serif;
+    font-size: 80%;
+}
+
+// .mat-form-field-suffix .mat-icon-button {
+//     height: 1.5em;
+//     width: 1.5em;
+// }
+
+// .selectpicker{
+//     width: 200px;
+//     height: 30px;
+//     background-color: #141414 !important;
+//     border-style: solid;
+//     border-left-width: 3px;
+//     border-left-color: #00DDDD;
+//     border-top: none;
+//     border-bottom: none;
+//     border-right: none;
+//     color: white;
+//     font-size: 18px;
+//     font-weight: 200;
+//     padding-left: 6px;
+//     -webkit-appearance: none;
+//     -moz-appearance: none;
+//     appearance: none;
+// }

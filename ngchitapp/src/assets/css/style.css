@@ -3975,7 +3975,7 @@ fieldset .form-control:focus {
 .has-feedback .form-control-feedback {
   width: 40px;
   height: 40px;
-  line-height: 40px !important;
+  line-height: 30px !important;
   top: 0;
   right: 0;
   color: #777777;

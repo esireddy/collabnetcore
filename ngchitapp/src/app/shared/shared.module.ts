@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TitleCasePipe } from '@angular/common';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  providers: [
+    TitleCasePipe
   ],
   declarations: []
 })
