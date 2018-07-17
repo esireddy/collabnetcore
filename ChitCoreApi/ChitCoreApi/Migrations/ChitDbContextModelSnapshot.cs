@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
-using static ChitCoreApi.ChitCoreApiConstants;
 
 namespace ChitCoreApi.Migrations
 {
@@ -55,53 +54,69 @@ namespace ChitCoreApi.Migrations
                     b.ToTable("Chits");
                 });
 
+            modelBuilder.Entity("ChitCoreApi.ChitMgmt.post.v1.Models.ChitUser", b =>
+                {
+                    b.Property<int>("ChitId");
+
+                    b.Property<int>("UserId");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.HasKey("ChitId", "UserId");
+
+                    b.HasAlternateKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ChitUsers");
+                });
+
             modelBuilder.Entity("ChitCoreApi.ChitMgmt.post.v1.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Address");
+
+                    b.Property<DateTime>("CreateDate");
+
                     b.Property<string>("Email")
                         .IsRequired();
 
-                    b.Property<string>("Firstname")
+                    b.Property<string>("FirstName")
                         .IsRequired();
 
-                    b.Property<string>("Lastname")
+                    b.Property<string>("LastName")
                         .IsRequired();
+
+                    b.Property<DateTime>("LastUpdatedDate");
 
                     b.Property<string>("MInitial");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired();
 
-                    b.Property<string>("Address");
-
-                    b.Property<DateTime>("CreateDate").HasDefaultValue(DateTime.Now);
-
-                    b.Property<DateTime>("LastUpdatedDate").HasDefaultValue(DateTime.Now);
-
-                    b.Property<int>("StatusId").HasDefaultValue((int)CustomerStatus.New);
+                    b.Property<int>("StatusId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ChitCoreApi.ChitMgmt.post.v1.Models.ChitUser", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd();
+                {
+                    b.HasOne("ChitCoreApi.ChitMgmt.post.v1.Models.Chit", "Chit")
+                        .WithMany("ChitUsers")
+                        .HasForeignKey("ChitId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                b.Property<int>("ChitId")
-                    .IsRequired();
-
-                b.Property<int>("UserId")
-                   .IsRequired();
-
-                b.HasKey("Id");
-
-                b.ToTable("ChitUser");
-            });
+                    b.HasOne("ChitCoreApi.ChitMgmt.post.v1.Models.User", "User")
+                        .WithMany("ChitUsers")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+#pragma warning restore 612, 618
         }
     }
 }

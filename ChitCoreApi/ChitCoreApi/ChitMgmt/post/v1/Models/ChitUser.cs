@@ -10,15 +10,15 @@ namespace ChitCoreApi.ChitMgmt.post.v1.Models
         public int Id { get; set; }
 
         [Required]
-        [ForeignKey("Chit")]
         public int ChitId { get; set; }
 
         [Required]
-        [ForeignKey("User")]
         public int UserId { get; set; }
 
+        [ForeignKey("ChitId")]
         public virtual Chit Chit { get; set; }
 
+        [ForeignKey("UserId")]
         public virtual User User { get; set; }
     }
 }
