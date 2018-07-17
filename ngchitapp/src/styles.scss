@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+// body {
+//     font-family: "Roboto", sans-serif;
+// }
+
 .forgotpwd{
     padding-left: 25px;
 }
@@ -21,26 +25,8 @@ width: 185px;
     font-size: 80%;
 }
 
-// .mat-form-field-suffix .mat-icon-button {
-//     height: 1.5em;
-//     width: 1.5em;
-// }
-
-// .selectpicker{
-//     width: 200px;
-//     height: 30px;
-//     background-color: #141414 !important;
-//     border-style: solid;
-//     border-left-width: 3px;
-//     border-left-color: #00DDDD;
-//     border-top: none;
-//     border-bottom: none;
-//     border-right: none;
-//     color: white;
-//     font-size: 18px;
-//     font-weight: 200;
-//     padding-left: 6px;
-//     -webkit-appearance: none;
-//     -moz-appearance: none;
-//     appearance: none;
-// }
+.swal-size-sm 
+{
+   width: 350px !important;
+   height: 300px !important;
+}

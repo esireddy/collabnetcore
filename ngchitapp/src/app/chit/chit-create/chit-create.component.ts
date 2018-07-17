@@ -5,6 +5,7 @@ import { ChitService } from '../services/chit.service';
 import { IGetChit } from '../models/i-get-chit';
 import { ErrorInfo } from '../../500/error-info';
 import { TitleCasePipe } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-chit-create',
@@ -16,8 +17,6 @@ export class ChitCreateComponent implements OnInit {
   model = new CreateChit();
 
   chit$: IGetChit;
-
-  isChitCreated = false;
 
   constructor(private chitService: ChitService, private titlecasePipe: TitleCasePipe) { }
 
@@ -31,11 +30,15 @@ export class ChitCreateComponent implements OnInit {
         .subscribe(
           (data: IGetChit) => {
             this.chit$ = data;
-            this.isChitCreated = true;
             setTimeout(() => {
-              this.isChitCreated = false;
+              Swal({
+                title: 'Success',
+                text: 'Create Chit Action!',
+                customClass: 'swal-size-sm',
+                type: 'success'
+              });
               form.resetForm();
-            }, 2000);
+            }, 500);
           },
           (err: ErrorInfo) => { console.log(err); });
     }
