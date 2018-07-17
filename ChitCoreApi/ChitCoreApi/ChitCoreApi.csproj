@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Users\post\v1\Models\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

@@ -1,6 +1,9 @@
-﻿using ChitCoreApi.Data;
+﻿using ChitCoreApi.ChitMgmt.post.v1.Models;
+using ChitCoreApi.Data;
 using ChitCoreApi.Pattern;
-using ChitCoreApi.Users.post.v1.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -31,7 +34,24 @@ namespace ChitCoreApi.Users.Pattern
         public IEnumerable<User> Get(string searchTerm)
         {
             return dbContext.Set<User>().ToList()
-                .Where(user => user.Lastname.ToLower().StartsWith(searchTerm.ToLower()));
+                .Where(user => user.LastName.ToLower().StartsWith(searchTerm.ToLower()));
+        }
+
+        [HttpPost]
+        [Route("v1/user/{userId}/chits")]
+        public IEnumerable<Chit> GetUserChits(int userId)
+        {
+            //var userChits = ChitDbContext.Chits
+            //    .Include(cu => cu.ChitUsers)
+            //    .Where(cu => cu.ChitUsers.Any(x => x.UserId == userId))
+            //    .ToList();
+
+            var userChits = ChitDbContext.Users
+                    .Where(x => x.Id == userId)
+                    .SelectMany(uc => uc.ChitUsers)
+                    .Select(uc => uc.Chit);
+
+            return userChits.ToList();
         }
 
         #endregion Methods

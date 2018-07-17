@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
+using ChitCoreApi.ChitMgmt.get.v1.Dto_s;
+using ChitCoreApi.ChitMgmt.post.v1.Models;
 using ChitCoreApi.Pattern;
 using ChitCoreApi.Users.get.v1.Dto_s;
 using ChitCoreApi.Users.post.v1.Dto_s;
-using ChitCoreApi.Users.post.v1.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace ChitCoreApi.Controllers
 {
@@ -51,6 +49,16 @@ namespace ChitCoreApi.Controllers
             return Ok(userEntity);
         }
 
+        // Get User Chits
+        [HttpGet]
+        [Route("v1/user/{userId}/chits")]
+        public ActionResult GetUserChits(int userId)
+        {
+            var userEntity = unitOfWork.Users.GetUserChits(userId);
+            var getChitDtos = Mapper.Map<IEnumerable<Chit>, IEnumerable<GetChitDto>>(userEntity);
+            return Ok(getChitDtos);
+        }
+
         // POST: api/Users
         [HttpPost]
         public ActionResult Post([FromBody]CreateUserDto createUserDto)
@@ -61,7 +69,16 @@ namespace ChitCoreApi.Controllers
             if (!ModelState.IsValid)
                 return StatusCode(400, ModelState);
 
-            var userEntity = Mapper.Map<CreateUserDto, User>(createUserDto);
+            var userEntity = Mapper.Map<CreateUserDto, User>(createUserDto,
+                opt => {
+                    opt.AfterMap((src, dest) =>
+                    {
+                        dest.CreateDate = DateTime.Now;
+                        dest.LastUpdatedDate = DateTime.Now;
+                        dest.Address = "Residence Address";
+                    });
+                });
+            
             unitOfWork.Users.Add(userEntity);
             if (!unitOfWork.Complete())
             {

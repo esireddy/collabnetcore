@@ -43,6 +43,8 @@ namespace ChitCoreApi.ChitMgmt.post.v1.Models
 
         public DateTime? AuctionDate { get; set; }
 
+        public virtual ICollection<ChitUser> ChitUsers { get; set; }
+
         #endregion Properties
     }
 }

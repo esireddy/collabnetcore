@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
+using static ChitCoreApi.ChitCoreApiConstants;
 
 namespace ChitCoreApi.Migrations
 {
@@ -54,7 +55,7 @@ namespace ChitCoreApi.Migrations
                     b.ToTable("Chits");
                 });
 
-            modelBuilder.Entity("ChitCoreApi.Users.post.v1.Models.User", b =>
+            modelBuilder.Entity("ChitCoreApi.ChitMgmt.post.v1.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -73,11 +74,34 @@ namespace ChitCoreApi.Migrations
                     b.Property<string>("PhoneNumber")
                         .IsRequired();
 
+                    b.Property<string>("Address");
+
+                    b.Property<DateTime>("CreateDate").HasDefaultValue(DateTime.Now);
+
+                    b.Property<DateTime>("LastUpdatedDate").HasDefaultValue(DateTime.Now);
+
+                    b.Property<int>("StatusId").HasDefaultValue((int)CustomerStatus.New);
+
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
-#pragma warning restore 612, 618
+
+            modelBuilder.Entity("ChitCoreApi.ChitMgmt.post.v1.Models.ChitUser", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd();
+
+                b.Property<int>("ChitId")
+                    .IsRequired();
+
+                b.Property<int>("UserId")
+                   .IsRequired();
+
+                b.HasKey("Id");
+
+                b.ToTable("ChitUser");
+            });
         }
     }
 }

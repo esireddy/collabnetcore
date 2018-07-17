@@ -6,7 +6,6 @@ using ChitCoreApi.Data;
 using ChitCoreApi.Pattern;
 using ChitCoreApi.Users.get.v1.Dto_s;
 using ChitCoreApi.Users.post.v1.Dto_s;
-using ChitCoreApi.Users.post.v1.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -36,11 +35,11 @@ namespace ChitCoreApi.Middlewares
                 policy.AllowAnyMethod();
             }));
 
-            services.AddAuthentication().AddGoogle(googleOptions =>
-            {
-                googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-                googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-            });
+            //services.AddAuthentication().AddGoogle(googleOptions =>
+            //{
+            //    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+            //    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+            //});
 
             services.AddMvc();
         }

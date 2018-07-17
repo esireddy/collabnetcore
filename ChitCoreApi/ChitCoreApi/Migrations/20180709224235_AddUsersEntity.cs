@@ -19,7 +19,11 @@ namespace ChitCoreApi.Migrations
                     Firstname = table.Column<string>(nullable: false),
                     Lastname = table.Column<string>(nullable: false),
                     MInitial = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: false)
+                    PhoneNumber = table.Column<string>(nullable: false),
+                    Address = table.Column<string>(nullable: false),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    LastUpdatedDate = table.Column<DateTime>(nullable: false),
+                    StatusId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
