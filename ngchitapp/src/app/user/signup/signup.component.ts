@@ -5,6 +5,7 @@ import { UserService } from '../services/user.service';
 import { IGetUser } from '../models/i-get-user';
 import { ErrorInfo } from '../../500/error-info';
 import { TitleCasePipe } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signup',
@@ -14,8 +15,6 @@ import { TitleCasePipe } from '@angular/common';
 export class SignupComponent implements OnInit {
 
   model = new SignupUser();
-
-  isUserCreated = false;
 
   constructor(private userService: UserService,
     private titlecasePipe: TitleCasePipe) { }
@@ -30,11 +29,15 @@ export class SignupComponent implements OnInit {
         .subscribe(
           (data: IGetUser) => {
             console.log(data);
-            this.isUserCreated = true;
             setTimeout(() => {
-              this.isUserCreated = false;
+              Swal({
+                title: 'Success',
+                text: 'Create User Action!',
+                customClass: 'swal-size-sm',
+                type: 'success'
+              });
               signupForm.resetForm();
-            }, 2000);
+            }, 500);
           },
           (err: ErrorInfo) => { console.log(err); });
     }

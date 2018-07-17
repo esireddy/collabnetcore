@@ -35,12 +35,15 @@ namespace ChitCoreApi.Middlewares
                 policy.AllowAnyMethod();
             }));
 
+<<<<<<< HEAD
             //services.AddAuthentication().AddGoogle(googleOptions =>
             //{
             //    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
             //    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
             //});
 
+=======
+>>>>>>> 1d9890f580649b5c94d5ae7ad95ab20589cf05af
             services.AddMvc();
         }
 
@@ -72,8 +75,6 @@ namespace ChitCoreApi.Middlewares
             app.UseStatusCodePages();
 
             app.UseCors("Allowngchitapp");
-
-            app.UseAuthentication();
 
             app.UseMvc();
 
