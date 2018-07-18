@@ -1,19 +1,14 @@
 ﻿using AutoMapper;
-using ChitCoreApi.ChitMgmt.get.v1.Dto_s;
-using ChitCoreApi.ChitMgmt.post.v1.Dto_s;
-using ChitCoreApi.ChitMgmt.post.v1.Models;
-using ChitCoreApi.Data;
-using ChitCoreApi.Pattern;
-using ChitCoreApi.Users.get.v1.Dto_s;
-using ChitCoreApi.Users.post.v1.Dto_s;
+using ChitCore.Common.v1.Dtos;
+using ChitCore.Data.v1;
+using ChitCore.Data.v1.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using static ChitCoreApi.ChitCoreApiConstants;
+using static ChitCore.Common.v1.ChitCoreApiConstants;
 
 namespace ChitCoreApi.Middlewares
 {

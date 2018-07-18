@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using ChitCoreApi.ChitMgmt.get.v1.Dto_s;
-using ChitCoreApi.ChitMgmt.post.v1.Models;
-using ChitCoreApi.Pattern;
-using ChitCoreApi.Users.get.v1.Dto_s;
-using ChitCoreApi.Users.post.v1.Dto_s;
+using ChitCore.Common.v1.Dtos;
+using ChitCore.Data.v1;
+using ChitCore.Data.v1.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
