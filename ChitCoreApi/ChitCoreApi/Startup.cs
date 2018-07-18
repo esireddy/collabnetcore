@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 
 namespace ChitCoreApi
 {
@@ -31,6 +32,8 @@ namespace ChitCoreApi
         public void ConfigureServices(IServiceCollection services)
         {
             ServiceConfiguration.ConfigureServices(services, configuration);
+
+            services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

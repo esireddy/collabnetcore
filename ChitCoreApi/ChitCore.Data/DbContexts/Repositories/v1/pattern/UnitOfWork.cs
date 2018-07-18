@@ -1,5 +1,4 @@
-﻿using ChitCoreApi.Users.Pattern;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace ChitCore.Data.v1
 {

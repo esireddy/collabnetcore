@@ -1,9 +1,8 @@
-﻿using ChitCore.Data.v1;
-using ChitCore.Data.v1.Models;
+﻿using ChitCore.Data.v1.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ChitCoreApi.Users.Pattern
+namespace ChitCore.Data.v1
 {
     public class UserRepository : Repository<User>, IUserRepository
     {

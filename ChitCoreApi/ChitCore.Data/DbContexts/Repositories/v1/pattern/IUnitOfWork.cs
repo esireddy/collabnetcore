@@ -1,5 +1,4 @@
-﻿using ChitCoreApi.Users.Pattern;
-using System;
+﻿using System;
 
 namespace ChitCore.Data.v1
 {
