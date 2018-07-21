@@ -39,8 +39,8 @@ export class ChitEditDefaultComponent implements OnInit {
         (err: ErrorInfo) => { console.log(err); });
   }
 
-  onSubmit(form: NgForm): void {
-
+  onSaveChit(form: NgForm): void {
+console.log('test');
     if (form.valid) {
       this.makePatchData(form);
 

@@ -33,7 +33,6 @@ export class ChitEditComponent implements OnInit {
   set chit(value: IGetChit) {
     this.currentChit = value;
     this.originalChit = Object.assign({}, value);
-
   }
 
   get isDirty(): boolean {
