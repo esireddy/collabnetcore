@@ -1,0 +1,58 @@
+<!-- breadcrumb start -->
+<!-- ================ -->
+
+<div class="breadcrumb-container">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <i class="fa fa-home pr-2"></i>
+        <a routerLink='/home'>Home</a>
+      </li>
+      <li class="breadcrumb-item active">Chits</li>
+      <li class="breadcrumb-item active">Edit</li>
+    </ol>
+  </div>
+</div>
+<!-- breadcrumb end -->
+
+<!-- main-container start -->
+<!-- ================ -->
+<section class="main-container">
+  <div class="container">
+    <div class="row">
+      <!-- main start -->
+      <!-- ================ -->
+      <div class="main col-lg-8">
+        <!-- page-title start -->
+        <!-- ================ -->
+        <h1 class="page-title">Chit Edit</h1>
+        <div class="separator-2"></div>
+        <!-- page-title end -->
+
+        <!-- tabs start -->
+        <!-- ================ -->
+        <ul class="nav nav-tabs style-1" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link" role="tab" data-toggle="tab" routerLink='default' routerLinkActive='active'>
+              <i class="fa fa-edit pr-2"></i>Basic Information</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" role="tab" data-toggle="tab" routerLink='manager' routerLinkActive='active'>
+              <i class="fa fa-edit pr-2"></i>Manager</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" role="tab" data-toggle="tab" routerLink='users' routerLinkActive='active'>
+              <i class="fa fa-edit pr-2"></i>Users</a>
+          </li>
+        </ul>
+        <!-- Tab content start-->
+        <div class="tab-content">
+          <router-outlet></router-outlet>
+        </div>
+        <!-- Tab content end-->
+        <!-- tabs end -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- main-container end -->

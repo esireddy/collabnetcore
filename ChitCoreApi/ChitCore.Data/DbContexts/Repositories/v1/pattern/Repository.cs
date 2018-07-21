@@ -55,6 +55,11 @@ namespace ChitCore.Data.v1
             dbContext.Set<TEntity>().RemoveRange(entities);
         }
 
+        public void Update(TEntity entity)
+        {
+            dbContext.Set<TEntity>().Update(entity);
+        }
+
         #endregion Methods
     }
 }

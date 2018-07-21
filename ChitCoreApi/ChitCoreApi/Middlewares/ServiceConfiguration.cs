@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using ChitCore.Common.Dtos.v1.get;
+using ChitCore.Common.Dtos.v1.patch;
+using ChitCore.Common.Dtos.v1.post;
 using ChitCore.Common.v1.Dtos;
 using ChitCore.Data.v1;
 using ChitCore.Data.v1.Models;
@@ -56,6 +59,10 @@ namespace ChitCoreApi.Middlewares
 
                 config.CreateMap<CreateUserDto, User>();
                 config.CreateMap<User, GetUserDto>();
+                config.CreateMap<ChitUser, GetChitUserDto>();
+                config.CreateMap<Chit, PatchChitDto>();
+                config.CreateMap<PatchChitDto, Chit>();
+                config.CreateMap<CreateChitUser, ChitUser>();
             });
 
             app.UseStatusCodePages();

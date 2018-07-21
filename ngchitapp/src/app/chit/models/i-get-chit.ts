@@ -9,4 +9,7 @@ export interface IGetChit {
     endDate: string;
     statusId: number;
     statusText: string;
+    managerId: number;
+    auctionDate: string;
+    chitUsers: any[];
 }

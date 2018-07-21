@@ -65,9 +65,18 @@
               <td [class.text-info]="[chit.statusText===New]" mat-cell *matCellDef="let chit">{{chit.statusText}}</td>
             </ng-container>
 
-            <ng-container matColumnDef="createDate">
+            <ng-container matColumnDef='createDate'>
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Create Date</th>
-              <td mat-cell *matCellDef="let chit">{{chit.createDate | date:'MM/dd/yyyy'}}</td>
+              <td mat-cell *matCellDef='let chit'>{{chit.createDate | date:'MM/dd/yyyy'}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef='editColumn'>
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef='let chit'>
+                <a [routerLink]="[chit.id, 'edit']">
+                  <i class="fa fa-edit"></i>
+                </a>
+              </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="columsToDisplay"></tr>

@@ -45,7 +45,7 @@ export class ChitCreateComponent implements OnInit {
   }
 
   capitalize(event: any): void {
-    if (event.target.name === 'name') {
+    if (event.target.name === 'chitname') {
       this.model.name = this.titlecasePipe.transform(this.model.name);
     }
   }

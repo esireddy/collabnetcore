@@ -9,6 +9,10 @@ import { ChitDetailsComponent } from './chit-details/chit-details.component';
 import { ChitService } from './services/chit.service';
 import { ChitStartComponent } from './chit-start/chit-start.component';
 import { UserService } from '../user/services/user.service';
+import { ChitEditComponent } from './chit-edit/chit-edit.component';
+import { ChitEditDefaultComponent } from './chit-edit-default/chit-edit-default.component';
+import { ChitEditManagerComponent } from './chit-edit-manager/chit-edit-manager.component';
+import { ChitEditUsersComponent } from './chit-edit-users/chit-edit-users.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { UserService } from '../user/services/user.service';
     ChitCreateComponent,
     ChitDetailsComponent,
     ChitCreateComponent,
-    ChitStartComponent
+    ChitStartComponent,
+    ChitEditComponent,
+    ChitEditDefaultComponent,
+    ChitEditManagerComponent,
+    ChitEditUsersComponent
   ],
   imports: [
     SharedModule,
@@ -24,8 +32,6 @@ import { UserService } from '../user/services/user.service';
     ChitRoutingModule
   ],
   providers: [
-    ChitService,
-    UserService
   ]
 })
 export class ChitModule { }

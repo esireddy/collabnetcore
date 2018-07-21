@@ -7,8 +7,6 @@ import { Observable, of } from 'rxjs';
 import { startWith, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { UserService } from '../../user/services/user.service';
 import { IGetUser } from '../../user/models/i-get-user';
-import { TitleCasePipe } from '@angular/common';
-import { AnonymousSubject } from 'rxjs-compat';
 
 @Component({
   selector: 'app-chit-details',
@@ -36,7 +34,6 @@ export class ChitDetailsComponent implements OnInit {
   commission: number;
   auctionDate: number;
 
-  minDate = new Date();
 
   constructor(private route: ActivatedRoute,
     private userService: UserService,
@@ -76,7 +73,7 @@ export class ChitDetailsComponent implements OnInit {
   getChit(): void {
     this.route
       .data
-      .subscribe((data: IGetChit) => { this.chit = data['chitDetails']; console.log(this.chit);},
+      .subscribe((data: IGetChit) => { this.chit = data['chitDetails']; },
         (err: ErrorInfo) => { console.log(err); });
   }
 

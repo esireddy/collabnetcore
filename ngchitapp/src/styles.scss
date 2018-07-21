@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-// body {
-//     font-family: "Roboto", sans-serif;
-// }
+body {
+    font-family: "Roboto", sans-serif;
+}
 
 .forgotpwd{
     padding-left: 25px;
@@ -21,8 +21,15 @@ width: 185px;
     width: 160px;
 }
 .mat-form-field, .mat-option, #username {
-    font-family: "Roboto", sans-serif;
     font-size: 80%;
+    font-weight: 400;
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+.mat-form-field-infix {
+    padding: .5em 0;
+    // border-top: .84375em solid transparent;
+    border-top: none;
 }
 
 .swal-size-sm 

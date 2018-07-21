@@ -41,7 +41,7 @@ namespace ChitCore.Data.v1.Models
 
         public DateTime? AuctionDate { get; set; }
 
-        public virtual ICollection<ChitUser> ChitUsers { get; set; }
+        public virtual ICollection<ChitUser> ChitUsers { get; set; } = new List<ChitUser>();
 
         #endregion Properties
     }

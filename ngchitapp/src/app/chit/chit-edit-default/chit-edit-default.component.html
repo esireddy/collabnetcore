@@ -1,0 +1,54 @@
+<!-- main-container start -->
+<!-- ================ -->
+<div class='container'>
+  <div class='row'>
+    <div class='col-9'>
+      <div class='row'>
+        <div class='col-4'>
+          <form novalidate #form='ngForm' (ngSubmit)='onSubmit(form);'>
+            <div class='form-group'>
+              <label class='small' for='chitname'>Name:</label>
+              <mat-form-field>
+                <input matInput id='chitname' name='chitname' [(ngModel)]='chit.name' (keyup)='capitalize($event)' required>
+                <mat-error>Name is required</mat-error>
+              </mat-form-field>
+
+              <label class='small' for='chitvalue'>Value:</label>
+              <mat-form-field>
+                <input matInput id='chitvalue' name='chitvalue' [(ngModel)]='chit.value' pattern="^[1-9]\d*$" required>
+                <mat-error>Chit Value is required/not valid</mat-error>
+              </mat-form-field>
+
+              <label class='small' for='noOfMonths'>NoOfMonths:</label>
+              <mat-form-field>
+                <input matInput id='noOfMonths' name='noOfMonths' [(ngModel)]='chit.noOfMonths' pattern="^[1-9]\d*$" required>
+                <mat-error>NoOfMonths is required/not valid</mat-error>
+              </mat-form-field>
+
+              <label class='small' for='noOfUsers'>NoOfUsers:</label>
+              <mat-form-field>
+                <input matInput id='noOfUsers' name='noOfUsers' [(ngModel)]='chit.noOfUsers' pattern="^[1-9]\d*$" required>
+                <mat-error>NoOfUsers is required/not valid</mat-error>
+              </mat-form-field>
+
+              <label class="small" for='auctionDate'>Auction Date:</label>
+              <mat-form-field>
+                <input matInput [matDatepicker]='auctionDatePicker' [min]='minDate' id='auctionDate' name='auctionDate' [(ngModel)]='chit.auctionDate'
+                  required>
+                <mat-error>Auction Date is required</mat-error>
+                <mat-datepicker-toggle matSuffix [for]='auctionDatePicker'></mat-datepicker-toggle>
+                <mat-datepicker #auctionDatePicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class='form-group'>
+              <button class="btn btn-gray btn-sm" [routerLink]="['/chits']" style="margin-right: 3px;">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
+              <button class="btn btn-sm btn-group btn-default btn-animated" type="submit">Save </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- main-container end -->

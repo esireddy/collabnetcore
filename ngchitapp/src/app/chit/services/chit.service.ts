@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ErrorInfo } from '../../500/error-info';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs-compat';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { IGetChit } from '../models/i-get-chit';
 import { CreateChit } from '../models/create-chit';
 
@@ -23,7 +24,9 @@ export class ChitService {
         this.baseUrl,
         model,
         { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
-      .catch(this.handleError);
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   getChits(): Observable<IGetChit[] | ErrorInfo> {
@@ -31,7 +34,9 @@ export class ChitService {
       .get<IGetChit[]>(
         this.baseUrl,
         { headers: new HttpHeaders({ 'Accept': 'application/json' }) })
-      .catch(this.handleError);
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   getChitById(id: number): Observable<IGetChit | ErrorInfo> {
@@ -40,12 +45,26 @@ export class ChitService {
       .get<IGetChit>(
         url,
         { headers: new HttpHeaders({ 'Accept': 'application/json' }) })
-      .catch(this.handleError);
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  updateChit(id: number, jsonPatchDoc: any[]): any | ErrorInfo {
+    const url = this.baseUrl + `/${id}`;
+
+    return this.http.patch(
+      url,
+      jsonPatchDoc,
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json-patch+json' }) })
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   private handleError(err: HttpErrorResponse): Observable<ErrorInfo> {
     this.errorObj.errorNumber = err.status;
     this.errorObj.message = err.error;
-    return Observable.throw(this.errorObj);
+    return throwError(this.errorObj);
   }
 }

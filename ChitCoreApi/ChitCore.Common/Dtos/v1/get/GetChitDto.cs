@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ChitCore.Common.Dtos.v1.get;
+using System;
+using System.Collections.Generic;
 using static ChitCore.Common.v1.ChitCoreApiConstants;
 
 namespace ChitCore.Common.v1.Dtos
@@ -25,7 +27,13 @@ namespace ChitCore.Common.v1.Dtos
 
         public ChitStatus StatusId { get; set; }
 
+        public int ManagerId { get; set; }
+
         public string StatusText { get; set; }
+
+        public DateTime? AuctionDate { get; set; }
+
+        public IEnumerable<GetChitUserDto> ChitUsers { get; set; } = new List<GetChitUserDto>();
 
         #endregion Properties
     }

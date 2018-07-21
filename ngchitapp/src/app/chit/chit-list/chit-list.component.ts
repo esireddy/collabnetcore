@@ -13,7 +13,7 @@ export class ChitListComponent implements OnInit {
 
   dataSource = new MatTableDataSource();
 
-  columsToDisplay = ['name', 'value', 'noOfMonths', 'noOfUsers', 'statusText', 'createDate'];
+  columsToDisplay = ['name', 'value', 'noOfMonths', 'noOfUsers', 'statusText', 'createDate', 'editColumn'];
 
   chits$: IGetChit[];
 

@@ -32,11 +32,11 @@
         <form class="login-form margin-clear" novalidate #form="ngForm" (ngSubmit)="onSubmit(form);">
           <div class="form-group has-feedback">
             <mat-form-field>
-              <input matInput placeholder="Name" name="name" [(ngModel)]="model.name" (keyup)='capitalize($event)' required>
+              <input matInput placeholder="Name" name="chitname" [(ngModel)]="model.name" (keyup)='capitalize($event)' required>
               <mat-error>Name is required</mat-error>
             </mat-form-field>
             <mat-form-field>
-              <input matInput placeholder="Value" pattern="^[1-9]\d*$" #chitValue="ngModel" name="value" [(ngModel)]="model.value" required>
+              <input matInput placeholder="Value" pattern="^[1-9]\d*$" name="value" [(ngModel)]="model.value" required>
               <mat-error>Chit Value is required/not valid</mat-error>
             </mat-form-field>
             <mat-form-field>

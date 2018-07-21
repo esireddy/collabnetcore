@@ -15,6 +15,8 @@ namespace ChitCore.Data.v1
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
 
+        void Update(TEntity entity);
+
         #endregion Methods
     }
 }
