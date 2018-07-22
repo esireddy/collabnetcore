@@ -19,6 +19,10 @@ namespace ChitCore.Data.v1
 
         public DbSet<ChitUser> ChitUsers { get; set; }
 
+        public DbSet<AuctionDetail> AuctionDetails { get; set; }
+
+        public DbSet<PaymentDetail> PaymentDetails { get; set; }
+
         #endregion Properties
 
         #region Methods
