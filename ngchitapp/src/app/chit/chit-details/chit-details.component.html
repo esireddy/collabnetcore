@@ -75,29 +75,7 @@
       <div class="row">
         <!-- manager form section -->
         <div class='col-sm-4'>
-          <form novalidate [formGroup]='managerForm'>
-            <h1 class='page-sub-title'>Add a Manager</h1>
-            <div class='separator-2'></div>
-            <div class="form-group">
-              <div class="form-check" *ngFor="let control of managerForm.get('managers').controls">
-                <input type="checkbox" class="form-check-input" checked (change)="onManagerChange(control.value)">
-                <label id='username'>
-                  {{control.value}}
-                </label>
-              </div>
-            </div>
-            <div class="form-group">
-              <mat-form-field>
-                <input matInput placeholder='Key in lastname' [formControl]='managerControl' [matAutocomplete]='autoManager'>
-                <mat-autocomplete #autoManager='matAutocomplete' [displayWith]='displayFn' (optionSelected)='onSelectManager($event.option.value);'>
-                  <mat-option *ngFor='let mngr of managers | async' [value]='mngr'>{{mngr.firstname}}</mat-option>
-                </mat-autocomplete>
-              </mat-form-field>
-            </div>
-            <div class="form-group">
-              <button class='btn btn-sm btn-group btn-default btn-animated' [disabled]='disableSaveManager'>Save Manager </button>
-            </div>
-          </form>
+          
         </div>
         <!-- user form section -->
         <div class="col-sm-4">

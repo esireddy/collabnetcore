@@ -5,25 +5,29 @@
     <UserSecretsId>afc4d212-c401-4283-b4a2-22911fbc08c3</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
     <PackageReference Include="Serilog.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3"></DotNetCliToolReference>
+    <ProjectReference Include="..\ChitCore.Common\ChitCore.Common.csproj" />
+    <ProjectReference Include="..\ChitCore.Data\ChitCore.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChitCore.Common\ChitCore.Common.csproj" />
-    <ProjectReference Include="..\ChitCore.Data\ChitCore.Data.csproj" />
+    <PackageReference Update="Microsoft.NETCore.App" Version="2.1.2" />
   </ItemGroup>
 
 </Project>
