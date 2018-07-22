@@ -6,6 +6,7 @@ using ChitCore.Data.v1.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ChitCoreApi.Controllers
 {
@@ -45,6 +46,11 @@ namespace ChitCoreApi.Controllers
         {
             var chitEntity = unitOfWork.Chits.Get(id);
             var getChitDto = Mapper.Map<Chit, GetChitDto>(chitEntity);
+
+            //var userChits = chitEntity.ChitUsers
+            //        .Where(x => x.Id == chitEntity.ManagerId)
+            //        .Select(uc => string.Join(" ", [uc.User.FirstName, uc.User.LastName]));
+
             return Ok(getChitDto);
         }
 
