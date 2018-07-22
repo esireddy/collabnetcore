@@ -4,16 +4,14 @@ using ChitCore.Data.v1;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ChitCoreApi.Migrations
+namespace ChitCore.Data.Migrations
 {
     [DbContext(typeof(ChitDbContext))]
-    [Migration("20180721221019_Updating new tables")]
-    partial class Updatingnewtables
+    partial class ChitDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
