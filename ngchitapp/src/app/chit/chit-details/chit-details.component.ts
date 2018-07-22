@@ -24,13 +24,7 @@ export class ChitDetailsComponent implements OnInit {
   selectedUsers: IGetUser[] = [];
   disableSaveUsers = true;
 
-  // manager section
-  managerForm: FormGroup;
-  managerControl = new FormControl();
-  managers: Observable<IGetUser[]>;
-  selectedManagers: IGetUser[] = [];
-  disableSaveManager = true;
-  // others section
+
   commission: number;
   auctionDate: number;
 
@@ -41,9 +35,7 @@ export class ChitDetailsComponent implements OnInit {
     this.usersForm = this.fb.group({
       users: []
     });
-    this.managerForm = this.fb.group({
-      managers: []
-    });
+
   }
 
   ngOnInit() {
@@ -59,15 +51,7 @@ export class ChitDetailsComponent implements OnInit {
         })
       );
 
-    this.managers = this.managerControl.valueChanges
-      .pipe(
-        startWith(''),
-        debounceTime(200),
-        distinctUntilChanged(),
-        switchMap(val => {
-          return this.getUsers(val || '');
-        })
-      );
+
   }
 
   getChit(): void {
@@ -115,19 +99,7 @@ export class ChitDetailsComponent implements OnInit {
     }
   }
 
-  onSelectManager(manager: IGetUser): void {
-    this.selectedManagers = [];
-    if (manager) {
-      this.selectedManagers.push(manager);
-      this.disableSaveManager = false;
 
-      // rebuild form
-      this.createManagerForm();
-
-      // clear the search input
-      this.managerControl.patchValue('');
-    }
-  }
 
   createUserForm(): void {
     const index = -1;
@@ -145,17 +117,7 @@ export class ChitDetailsComponent implements OnInit {
     });
   }
 
-  createManagerForm(): void {
-    // create formControl for each selected user
-    const control = this.selectedManagers.map(
-      c => new FormControl({ value: `${c.firstname} ${c.mInitial ? c.mInitial : ''} ${c.lastname}`, disabled: true })
-    );
 
-    // recreate the form
-    this.managerForm = this.fb.group({
-      managers: new FormArray(control)
-    });
-  }
 
   onUserChange(index: number): void {
     // arg1 is where to start, arg2 is number of elements to add/remove
@@ -165,11 +127,5 @@ export class ChitDetailsComponent implements OnInit {
     this.createUserForm();
   }
 
-  onManagerChange(): void {
-    // arg1 is where to start, arg2 is number of elements to add/remove
-    this.selectedManagers = [];
 
-    // rebuild form using remaining users from selectedUsers
-    this.createManagerForm();
-  }
 }

@@ -59,10 +59,10 @@ namespace ChitCoreApi.Middlewares
 
                 config.CreateMap<CreateUserDto, User>();
                 config.CreateMap<User, GetUserDto>();
-                config.CreateMap<ChitUser, GetChitUserDto>();
+                //config.CreateMap<ChitUser, GetChitUserDto>();
                 config.CreateMap<Chit, PatchChitDto>();
                 config.CreateMap<PatchChitDto, Chit>();
-                config.CreateMap<CreateChitUser, ChitUser>();
+                //config.CreateMap<CreateChitUser, ChitUser>();
             });
 
             app.UseStatusCodePages();
