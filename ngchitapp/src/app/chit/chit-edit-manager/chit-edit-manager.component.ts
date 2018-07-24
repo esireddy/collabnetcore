@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
+import { Component, OnInit, Injector } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { startWith, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { IGetUser } from '../../user/models/i-get-user';
 import { IGetChit } from '../models/i-get-chit';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorInfo } from '../../500/error-info';
 import { UserService } from '../../user/services/user.service';
+import { ChitService } from '../services/chit.service';
+import { ChitEditComponent } from '../chit-edit/chit-edit.component';
 
 @Component({
   selector: 'app-chit-edit-manager',
@@ -21,13 +23,21 @@ export class ChitEditManagerComponent implements OnInit {
   selectedManagers: IGetUser[] = [];
 
   chit: IGetChit;
+  parentComponent: ChitEditComponent;
+  jsonPatchDoc: any = [];
 
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
-    private userService: UserService) {
+    private userService: UserService,
+    private chitService: ChitService,
+    private injector: Injector,
+    private router: Router) {
+
     this.managerForm = this.fb.group({
       managers: []
     });
+
+    this.parentComponent = this.injector.get(ChitEditComponent);
   }
 
   ngOnInit() {
@@ -75,11 +85,16 @@ export class ChitEditManagerComponent implements OnInit {
     if (manager) {
       this.selectedManagers.push(manager);
 
+      // assign managerid to chit managerid
+      this.chit.managerId = manager.id;
+
       // rebuild form
       this.createManagerForm();
 
-      // clear the search input
+      // clear the search input and required validation
       this.managerControl.patchValue('');
+      this.managerControl.clearValidators();
+      this.managerControl.updateValueAndValidity();
     }
   }
 
@@ -105,7 +120,38 @@ export class ChitEditManagerComponent implements OnInit {
   onManagerChange(): void {
     this.selectedManagers = [];
 
+    // clear managerid from chit when no manager selected
+    this.chit.managerId = 0;
+
     // rebuild form using remaining users from selectedUsers
     this.createManagerForm();
+
+    // add required validation when no manager selected
+    this.managerControl.setValidators(Validators.required);
+    this.managerControl.updateValueAndValidity();
+  }
+
+  onSaveManager(): void {
+    if (this.selectedManagers.length === 1) {
+      this.makePatchData();
+
+      this.chitService
+        .updateChit(
+          this.chit.id,
+          this.jsonPatchDoc)
+        .subscribe();
+
+      this.parentComponent.reset();
+
+      if (this.chit.noOfUsers !== this.chit.chitUsers.length) {
+        this.router.navigate(['/chits', this.chit.id, 'edit', 'users']);
+      } else {
+        this.router.navigate(['/chits']);
+      }
+    }
+  }
+
+  makePatchData(): void {
+    this.jsonPatchDoc.push({ 'op': 'replace', 'path': '/managerId', 'value': this.chit.managerId });
   }
 }

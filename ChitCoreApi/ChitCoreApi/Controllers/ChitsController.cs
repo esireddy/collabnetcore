@@ -45,11 +45,12 @@ namespace ChitCoreApi.Controllers
         public IActionResult Get(int id)
         {
             var chitEntity = unitOfWork.Chits.Get(id);
+            var user = chitEntity.ChitUsers
+                                    .Where(x => x.UserId == chitEntity.ManagerId)
+                                    .Select(x => x.User).FirstOrDefault();
             var getChitDto = Mapper.Map<Chit, GetChitDto>(chitEntity);
 
-            //var userChits = chitEntity.ChitUsers
-            //        .Where(x => x.Id == chitEntity.ManagerId)
-            //        .Select(uc => string.Join(" ", [uc.User.FirstName, uc.User.LastName]));
+            getChitDto.Manager = (user != null) ? string.Join(" ", new string[] { user.FirstName, user.MInitial, user.LastName }) : string.Empty;
 
             return Ok(getChitDto);
         }

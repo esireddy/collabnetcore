@@ -27,13 +27,17 @@ namespace ChitCore.Common.v1.Dtos
 
         public ChitStatus StatusId { get; set; }
 
+        public string StatusText { get; set; }
+
         public int ManagerId { get; set; }
 
-        public string StatusText { get; set; }
+        public string Manager { get; set; }        
 
         public DateTime? AuctionDate { get; set; }
 
         public IEnumerable<GetChitUserDto> ChitUsers { get; set; } = new List<GetChitUserDto>();
+
+        public IEnumerable<GetUserDto> Users { get; set; } = new List<GetUserDto>();
 
         #endregion Properties
     }

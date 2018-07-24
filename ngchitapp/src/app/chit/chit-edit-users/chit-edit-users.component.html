@@ -1,3 +1,37 @@
-<p>
-  chit-edit-users works!
-</p>
+<!-- main-container start -->
+<!-- ================ -->
+<div class='container'>
+  <div class='row'>
+    <div class='col-9'>
+      <div class='row'>
+        <div class='col-4'>
+          <form novalidate [formGroup]="usersForm">
+            <h1 class="page-sub-title">Add Users</h1>
+            <div class='separator-2'></div>
+            <div class="form-group">
+              <div class="form-check" *ngFor="let ctrl of usersForm.get('users').controls">
+                <input type="checkbox" class="form-check-input" checked (change)="onUserChange(ctrl.get('index').value)">
+                <label id='username'>
+                  {{ctrl.get('name').value}}
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <mat-form-field>
+                <input matInput placeholder='Key in lastname' [formControl]='userControl' [matAutocomplete]='autoUser'>
+                <mat-autocomplete #autoUser='matAutocomplete' [displayWith]='displayFn' (optionSelected)='onSelectUser($event.option.value);'>
+                  <mat-option *ngFor='let user of users | async' [value]='user'>{{user.firstname}}</mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </div>
+            <div class='form-group'>
+              <a class="btn btn-gray btn-sm" [routerLink]="['/chits']" style="margin-right: 3px;">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>Back</a>
+              <button class="btn btn-sm btn-group btn-default btn-animated" type="submit">Save </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

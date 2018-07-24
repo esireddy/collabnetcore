@@ -36,7 +36,8 @@ html {
 }
 
 body {
-  font-size: 15px;
+  /* font-size: 15px; */
+  font-size: 12px;
   line-height: 1.4666666667;
   color: #777777;
   background-color: #ffffff;

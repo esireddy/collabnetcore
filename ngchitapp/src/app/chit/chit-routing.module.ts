@@ -11,6 +11,7 @@ import { ChitEditDefaultComponent } from './chit-edit-default/chit-edit-default.
 import { ChitEditManagerComponent } from './chit-edit-manager/chit-edit-manager.component';
 import { ChitEditUsersComponent } from './chit-edit-users/chit-edit-users.component';
 import { ChitEditGuardGuard } from './guards/chit-edit-guard.guard';
+import { TestGuard } from './guards/test.guard';
 
 const chitRoutes: Routes = [
   {
@@ -26,6 +27,7 @@ const chitRoutes: Routes = [
         resolve: { chitDetails: ChitDetailsResolveGuard },
         children: [
           { path: '', redirectTo: 'default', pathMatch: 'full' },
+          // { path: 'default', component: ChitEditDefaultComponent, canDeactivate: [TestGuard] },
           { path: 'default', component: ChitEditDefaultComponent },
           { path: 'manager', component: ChitEditManagerComponent },
           { path: 'users', component: ChitEditUsersComponent }
