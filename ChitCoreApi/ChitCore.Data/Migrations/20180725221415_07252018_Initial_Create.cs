@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ChitCore.Data.Migrations
 {
-    public partial class InitialState : Migration
+    public partial class _07252018_Initial_Create : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -78,11 +78,39 @@ namespace ChitCore.Data.Migrations
                     Address = table.Column<string>(nullable: true),
                     CreateDate = table.Column<DateTime>(nullable: false),
                     LastUpdatedDate = table.Column<DateTime>(nullable: false),
-                    StatusId = table.Column<int>(nullable: false)
+                    StatusId = table.Column<int>(nullable: false),
+                    UserTypeId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ChitAdministrator",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<int>(nullable: false),
+                    ChitId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ChitAdministrator", x => new { x.ChitId, x.UserId });
+                    table.UniqueConstraint("AK_ChitAdministrator_Id", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ChitAdministrator_Chits_ChitId",
+                        column: x => x.ChitId,
+                        principalTable: "Chits",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ChitAdministrator_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -114,6 +142,17 @@ namespace ChitCore.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_ChitAdministrator_ChitId",
+                table: "ChitAdministrator",
+                column: "ChitId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ChitAdministrator_UserId",
+                table: "ChitAdministrator",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ChitUsers_UserId",
                 table: "ChitUsers",
                 column: "UserId");
@@ -123,6 +162,9 @@ namespace ChitCore.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "AuctionDetails");
+
+            migrationBuilder.DropTable(
+                name: "ChitAdministrator");
 
             migrationBuilder.DropTable(
                 name: "ChitUsers");

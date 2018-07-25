@@ -16,6 +16,11 @@ export class SignupComponent implements OnInit {
 
   model = new SignupUser();
 
+  userProfiles = [
+    {Id : 1, Type: 'Customer'},
+    {Id : 2, Type: 'Manager'},
+    {Id : 3,  Type: 'System Admin'} ];
+
   constructor(private userService: UserService,
     private titlecasePipe: TitleCasePipe) { }
 

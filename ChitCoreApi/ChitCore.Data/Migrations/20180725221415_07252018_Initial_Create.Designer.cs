@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChitCore.Data.Migrations
 {
     [DbContext(typeof(ChitDbContext))]
-    [Migration("20180722025634_Initial State")]
-    partial class InitialState
+    [Migration("20180725221415_07252018_Initial_Create")]
+    partial class _07252018_Initial_Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -74,6 +74,28 @@ namespace ChitCore.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Chits");
+                });
+
+            modelBuilder.Entity("ChitCore.Data.v1.Models.ChitAdministrator", b =>
+                {
+                    b.Property<int>("ChitId");
+
+                    b.Property<int>("UserId");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("ChitId", "UserId");
+
+                    b.HasAlternateKey("Id");
+
+                    b.HasIndex("ChitId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ChitAdministrator");
                 });
 
             modelBuilder.Entity("ChitCore.Data.v1.Models.ChitUser", b =>
@@ -144,9 +166,24 @@ namespace ChitCore.Data.Migrations
 
                     b.Property<int>("StatusId");
 
+                    b.Property<int>("UserTypeId");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("ChitCore.Data.v1.Models.ChitAdministrator", b =>
+                {
+                    b.HasOne("ChitCore.Data.v1.Models.Chit", "Chit")
+                        .WithOne("Manager")
+                        .HasForeignKey("ChitCore.Data.v1.Models.ChitAdministrator", "ChitId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ChitCore.Data.v1.Models.User", "Manager")
+                        .WithMany("ChitAdmins")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("ChitCore.Data.v1.Models.ChitUser", b =>

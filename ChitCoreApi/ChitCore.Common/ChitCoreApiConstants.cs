@@ -22,6 +22,7 @@
             None = 0,
             ChitPayer = 1,
             ChitAdmin = 2,
+            SystemAdmin = 3     // cannot be deleted. There will be a default admin that should be in system by default, using which we can create other users
         }
     }
 }

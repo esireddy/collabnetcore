@@ -20,6 +20,9 @@ namespace ChitCore.Common.v1.Dtos
         [Required]
         public string PhoneNumber { get; set; }
 
+        [Required]
+        public int UserTypeId { get; set; }
+
         #endregion Properties
     }
 }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatSortModule, MatPaginatorModule,
-  MatAutocompleteModule, MatDatepickerModule, MatNativeDateModule
+  MatAutocompleteModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule
 } from '@angular/material';
 
 
@@ -18,7 +18,8 @@ import {
     MatPaginatorModule,
     MatAutocompleteModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -30,7 +31,8 @@ import {
     MatPaginatorModule,
     MatAutocompleteModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule
   ],
   declarations: []
 })

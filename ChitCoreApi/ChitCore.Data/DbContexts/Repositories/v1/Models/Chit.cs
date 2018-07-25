@@ -37,6 +37,8 @@ namespace ChitCore.Data.v1.Models
 
         public int ManagerId { get; set; }
 
+        public virtual ChitAdministrator Manager { get; set; }
+
         public int Commission { get; set; }
 
         public DateTime? AuctionDate { get; set; }

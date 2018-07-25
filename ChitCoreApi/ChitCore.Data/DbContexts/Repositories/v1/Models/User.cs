@@ -38,7 +38,12 @@ namespace ChitCore.Data.v1.Models
 
         public int StatusId { get; set; } = (int)CustomerStatus.New;
 
+        [Required]
+        public int UserTypeId { get; set; } = (int)UserType.ChitPayer;
+
         public ICollection<ChitUser> ChitUsers { get; set; }
+
+        public ICollection<ChitAdministrator> ChitAdmins { get; set; }
 
         #endregion Properties
     }

@@ -41,6 +41,18 @@ namespace ChitCore.Data.v1
                 .HasOne(cu => cu.User)
                 .WithMany(u => u.ChitUsers)
                 .HasForeignKey(cu => cu.UserId);
+
+            modelBuilder.Entity<ChitAdministrator>()
+                .HasKey(cu => new { cu.ChitId, cu.UserId });
+
+            modelBuilder.Entity<ChitAdministrator>()
+                .HasOne(ca => ca.Manager)
+                .WithMany(ca => ca.ChitAdmins)
+                .HasForeignKey(cu => cu.UserId);
+
+            modelBuilder.Entity<ChitAdministrator>()
+                .HasOne(ca => ca.Chit)
+                .WithOne(ca => ca.Manager);
         }
 
         #endregion Methods

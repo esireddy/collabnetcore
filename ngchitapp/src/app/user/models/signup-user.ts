@@ -4,4 +4,5 @@ export class SignupUser {
     public lastname: string;
     public email: string;
     public phoneNumber: string;
+    public userTypeId: Number;
 }

@@ -5,4 +5,5 @@ export interface IGetUser {
     lastname: string;
     email: string;
     phoneNumber: string;
+    userTypeId: Number;
 }

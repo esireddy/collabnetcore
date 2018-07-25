@@ -53,6 +53,11 @@
             <i class="fa fa-phone form-control-feedback"></i>
             <mat-error>PhoneNumber is required</mat-error>
           </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Select User Type" [(value)]="model.userTypeId">
+                <mat-option *ngFor="let userProfile of userProfiles" value="{{userProfile.Id}}">{{userProfile.Type}}</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
         <div class="form-group">
           <button class="btn btn-default btn-sm">Sign Up</button>
