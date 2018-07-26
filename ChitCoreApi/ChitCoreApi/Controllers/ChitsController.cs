@@ -46,7 +46,7 @@ namespace ChitCoreApi.Controllers
         {
             var chitEntity = unitOfWork.Chits.Get(id);
 
-            var managerDetails = chitEntity.Manager;
+            var manager = chitEntity.Manager;
 
             var user = chitEntity.ChitUsers
                                     .Where(x => x.UserId == chitEntity.ManagerId)
@@ -54,7 +54,7 @@ namespace ChitCoreApi.Controllers
 
             var getChitDto = Mapper.Map<Chit, GetChitDto>(chitEntity);
 
-            getChitDto.Manager = (user != null) ? string.Join(" ", new string[] { user.FirstName, user.MInitial, user.LastName }) : string.Empty;
+            getChitDto.Manager = (user != null) ? string.Join(" ", new string[] { user.FirstName, user.Minitial, user.LastName }) : string.Empty;
 
             return Ok(getChitDto);
         }

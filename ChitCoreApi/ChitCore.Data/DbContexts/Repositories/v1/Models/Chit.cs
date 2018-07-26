@@ -1,50 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using static ChitCore.Common.v1.ChitCoreApiConstants;
 
 namespace ChitCore.Data.v1.Models
 {
-    public class Chit
+    public partial class Chit
     {
-        #region Properties
+        public Chit()
+        {
+            AuctionDetails = new HashSet<AuctionDetail>();
+            ChitUsers = new HashSet<ChitUser>();
+            PaymentDetails = new HashSet<PaymentDetail>();
+        }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
-        [Required]
         public string Name { get; set; }
-
-        [Required]
         public int Value { get; set; }
-
-        [Required]
         public int NoOfMonths { get; set; }
-
-        [Required]
         public int NoOfUsers { get; set; }
-
-        [Required]
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-
+        public DateTime CreateDate { get; set; }
         public DateTime? StartDate { get; set; }
-
         public DateTime? EndDate { get; set; }
-
-        public ChitStatus StatusId { get; set; } = ChitStatus.New;
-
+        public int StatusId { get; set; }
         public int ManagerId { get; set; }
-
-        public virtual ChitAdministrator Manager { get; set; }
-
         public int Commission { get; set; }
-
         public DateTime? AuctionDate { get; set; }
 
-        public virtual ICollection<ChitUser> ChitUsers { get; set; } = new List<ChitUser>();
-
-        #endregion Properties
+        public User Manager { get; set; }
+        public ChitAdministrator ChitAdministrator { get; set; }
+        public ICollection<AuctionDetail> AuctionDetails { get; set; }
+        public ICollection<ChitUser> ChitUsers { get; set; }
+        public ICollection<PaymentDetail> PaymentDetails { get; set; }
     }
 }

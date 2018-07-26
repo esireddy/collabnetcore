@@ -1,50 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using static ChitCore.Common.v1.ChitCoreApiConstants;
 
 namespace ChitCore.Data.v1.Models
 {
-    public class User
+    public partial class User
     {
-        #region Properties
+        public User()
+        {
+            AuctionDetails = new HashSet<AuctionDetail>();
+            ChitAdministrator = new HashSet<ChitAdministrator>();
+            ChitUsers = new HashSet<ChitUser>();
+            PaymentDetails = new HashSet<PaymentDetail>();
+        }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
-        [Required]
         public string FirstName { get; set; }
-
-        public string MInitial { get; set; }
-
-        [Required]
+        public string Minitial { get; set; }
         public string LastName { get; set; }
-
-        [Required]
         public string Email { get; set; }
-
-        [Required]
         public string PhoneNumber { get; set; }
-
         public string Address { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime LastUpdatedDate { get; set; }
+        public int StatusId { get; set; }
+        public int UserTypeId { get; set; }
 
-        [Required]
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow; // Customer Since this date. Should not be modifiable, once created
-
-        [Required]
-        public DateTime LastUpdatedDate { get; set; } = DateTime.UtcNow; // Customer Since this date. Should not be modifiable, once created
-
-        public int StatusId { get; set; } = (int)CustomerStatus.New;
-
-        [Required]
-        public int UserTypeId { get; set; } = (int)UserType.ChitPayer;
-
+        public ICollection<AuctionDetail> AuctionDetails { get; set; }
+        public ICollection<ChitAdministrator> ChitAdministrator { get; set; }
         public ICollection<ChitUser> ChitUsers { get; set; }
-
-        public ICollection<ChitAdministrator> ChitAdmins { get; set; }
-
-        #endregion Properties
+        public ICollection<PaymentDetail> PaymentDetails { get; set; }
     }
 }
