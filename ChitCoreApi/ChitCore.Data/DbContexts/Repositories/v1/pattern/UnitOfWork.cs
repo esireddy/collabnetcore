@@ -17,6 +17,7 @@ namespace ChitCore.Data.v1
             dbContext = _dbContext;
             Chits = new ChitRepository(_dbContext);
             Users = new UserRepository(_dbContext);
+            ChitAdmins = new ChitAdministratorRepository(_dbContext);
         }
 
         #endregion Constructors
@@ -26,6 +27,8 @@ namespace ChitCore.Data.v1
         public IChitRepository Chits { get; set; }
 
         public IUserRepository Users { get; set; }
+
+        public IChitAdministratorRepository ChitAdmins { get; set; }
 
         #endregion Properties
 

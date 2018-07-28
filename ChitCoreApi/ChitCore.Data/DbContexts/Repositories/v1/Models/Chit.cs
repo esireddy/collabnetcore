@@ -21,7 +21,7 @@ namespace ChitCore.Data.v1.Models
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public int StatusId { get; set; }
-        public int ManagerId { get; set; }
+        public int? ManagerId { get; set; }
         public int Commission { get; set; }
         public DateTime? AuctionDate { get; set; }
 

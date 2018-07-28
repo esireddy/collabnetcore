@@ -71,7 +71,6 @@ namespace ChitCoreApi.Controllers
                 return StatusCode(400, ModelState);
 
             var chitEntity = Mapper.Map<CreateChitDto, Chit>(createChitDto);
-            chitEntity.ManagerId = 1;
             unitOfWork.Chits.Add(chitEntity);
             if (!unitOfWork.Complete())
             {
@@ -103,6 +102,22 @@ namespace ChitCoreApi.Controllers
 
             Mapper.Map(patchChitDto, chitEntity);
             unitOfWork.Chits.Update(chitEntity);
+
+            var chitAdminEntity = unitOfWork.ChitAdmins.GetAll().Where(x => x.ChitId == id).FirstOrDefault();
+
+            if (chitEntity.ManagerId.HasValue)
+            {
+                if (chitAdminEntity == null)
+                {
+                    unitOfWork.ChitAdmins.Add(new ChitAdministrator() { ChitId = id, UserId = chitEntity.ManagerId.Value });
+                }
+                else
+                {
+                    chitAdminEntity.UserId = chitEntity.ManagerId.Value;
+                    unitOfWork.ChitAdmins.Update(chitAdminEntity);
+                }
+            }
+
             if (!unitOfWork.Complete())
             {
                 return StatusCode(500, "An unexpected fault happened. Try again later.");

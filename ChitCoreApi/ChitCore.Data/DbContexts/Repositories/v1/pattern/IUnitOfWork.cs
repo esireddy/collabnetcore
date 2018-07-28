@@ -8,6 +8,8 @@ namespace ChitCore.Data.v1
 
         IUserRepository Users { get; }
 
+        IChitAdministratorRepository ChitAdmins { get; }
+
         bool Complete();
     }
 }

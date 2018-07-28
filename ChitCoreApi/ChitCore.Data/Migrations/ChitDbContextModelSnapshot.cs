@@ -37,6 +37,10 @@ namespace ChitCore.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ChitId");
+
+                    b.HasIndex("UserId");
+
                     b.ToTable("AuctionDetails");
                 });
 
@@ -54,7 +58,7 @@ namespace ChitCore.Data.Migrations
 
                     b.Property<DateTime?>("EndDate");
 
-                    b.Property<int>("ManagerId");
+                    b.Property<int?>("ManagerId");
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -71,6 +75,8 @@ namespace ChitCore.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ManagerId");
+
                     b.ToTable("Chits");
                 });
 
@@ -86,10 +92,12 @@ namespace ChitCore.Data.Migrations
 
                     b.HasKey("ChitId", "UserId");
 
-                    b.HasAlternateKey("Id");
-
                     b.HasIndex("ChitId")
                         .IsUnique();
+
+                    b.HasIndex("Id")
+                        .IsUnique()
+                        .HasName("AK_ChitAdministrator_Id");
 
                     b.HasIndex("UserId");
 
@@ -110,7 +118,9 @@ namespace ChitCore.Data.Migrations
 
                     b.HasKey("ChitId", "UserId");
 
-                    b.HasAlternateKey("Id");
+                    b.HasIndex("Id")
+                        .IsUnique()
+                        .HasName("AK_ChitUsers_Id");
 
                     b.HasIndex("UserId");
 
@@ -132,6 +142,10 @@ namespace ChitCore.Data.Migrations
                     b.Property<int>("UserId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ChitId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("PaymentDetails");
                 });
@@ -157,7 +171,8 @@ namespace ChitCore.Data.Migrations
 
                     b.Property<DateTime>("LastUpdatedDate");
 
-                    b.Property<string>("MInitial");
+                    b.Property<string>("Minitial")
+                        .HasColumnName("MInitial");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired();
@@ -171,15 +186,35 @@ namespace ChitCore.Data.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("ChitCore.Data.v1.Models.AuctionDetail", b =>
+                {
+                    b.HasOne("ChitCore.Data.v1.Models.Chit", "Chit")
+                        .WithMany("AuctionDetails")
+                        .HasForeignKey("ChitId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ChitCore.Data.v1.Models.User", "User")
+                        .WithMany("AuctionDetails")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ChitCore.Data.v1.Models.Chit", b =>
+                {
+                    b.HasOne("ChitCore.Data.v1.Models.User", "Manager")
+                        .WithMany()
+                        .HasForeignKey("ManagerId");
+                });
+
             modelBuilder.Entity("ChitCore.Data.v1.Models.ChitAdministrator", b =>
                 {
                     b.HasOne("ChitCore.Data.v1.Models.Chit", "Chit")
-                        .WithOne("Manager")
+                        .WithOne("ChitAdministrator")
                         .HasForeignKey("ChitCore.Data.v1.Models.ChitAdministrator", "ChitId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("ChitCore.Data.v1.Models.User", "Manager")
-                        .WithMany("ChitAdmins")
+                    b.HasOne("ChitCore.Data.v1.Models.User", "User")
+                        .WithMany("ChitAdministrator")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -193,6 +228,19 @@ namespace ChitCore.Data.Migrations
 
                     b.HasOne("ChitCore.Data.v1.Models.User", "User")
                         .WithMany("ChitUsers")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ChitCore.Data.v1.Models.PaymentDetail", b =>
+                {
+                    b.HasOne("ChitCore.Data.v1.Models.Chit", "Chit")
+                        .WithMany("PaymentDetails")
+                        .HasForeignKey("ChitId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ChitCore.Data.v1.Models.User", "User")
+                        .WithMany("PaymentDetails")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
