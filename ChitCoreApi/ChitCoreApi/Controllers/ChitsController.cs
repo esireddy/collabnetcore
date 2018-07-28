@@ -45,6 +45,7 @@ namespace ChitCoreApi.Controllers
         public IActionResult Get(int id)
         {
             var chitEntity = unitOfWork.Chits.Get(id);
+            
 
             var manager = chitEntity.Manager;
 
@@ -70,6 +71,7 @@ namespace ChitCoreApi.Controllers
                 return StatusCode(400, ModelState);
 
             var chitEntity = Mapper.Map<CreateChitDto, Chit>(createChitDto);
+            chitEntity.ManagerId = 1;
             unitOfWork.Chits.Add(chitEntity);
             if (!unitOfWork.Complete())
             {
