@@ -39,8 +39,6 @@ namespace ChitCore.Data.v1
 
             modelBuilder.Entity<ChitAdministrator>(entity =>
             {
-                entity.HasKey(e => new { e.ChitId, e.UserId });
-
                 entity.HasIndex(e => e.ChitId)
                     .IsUnique();
 

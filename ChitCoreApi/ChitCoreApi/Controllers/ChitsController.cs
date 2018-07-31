@@ -49,13 +49,9 @@ namespace ChitCoreApi.Controllers
 
             var manager = chitEntity.Manager;
 
-            var user = chitEntity.ChitUsers
-                                    .Where(x => x.UserId == chitEntity.ManagerId)
-                                    .Select(x => x.User).FirstOrDefault();
-
             var getChitDto = Mapper.Map<Chit, GetChitDto>(chitEntity);
 
-            getChitDto.Manager = (user != null) ? string.Join(" ", new string[] { user.FirstName, user.Minitial, user.LastName }) : string.Empty;
+            getChitDto.ManagerName = (manager != null) ? string.Join(" ", new string[] { manager.FirstName, manager.Minitial, manager.LastName }) : string.Empty;
 
             return Ok(getChitDto);
         }

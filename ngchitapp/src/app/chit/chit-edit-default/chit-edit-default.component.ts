@@ -40,7 +40,6 @@ export class ChitEditDefaultComponent implements OnInit {
   }
 
   onSaveChit(form: NgForm): void {
-console.log('test');
     if (form.valid) {
       this.makePatchData(form);
 

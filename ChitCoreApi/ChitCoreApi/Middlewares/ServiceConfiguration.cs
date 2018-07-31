@@ -56,14 +56,11 @@ namespace ChitCoreApi.Middlewares
                 config.CreateMap<CreateChitDto, Chit>();
                 config.CreateMap<Chit, GetChitDto>()
                 .ForMember(dest => dest.StatusText, opt => opt.MapFrom(src => (ChitStatus)src.StatusId));
-                //.ForMember(dest => dest.Users, src => src.MapFrom(s => Mapper.Map<User, GetUserDto>(s.ChitUsers)));
 
                 config.CreateMap<CreateUserDto, User>();
-                config.CreateMap<User, GetUserDto>();
-                //config.CreateMap<ChitUser, GetChitUserDto>();
+                //config.CreateMap<User, GetUserDto>();
                 config.CreateMap<Chit, PatchChitDto>();
                 config.CreateMap<PatchChitDto, Chit>();
-                //config.CreateMap<CreateChitUser, ChitUser>();
             });
 
             app.UseStatusCodePages();

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChitCore.Data.Migrations
 {
     [DbContext(typeof(ChitDbContext))]
-    [Migration("20180728165448_Initial Create")]
-    partial class InitialCreate
+    [Migration("20180728224901_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

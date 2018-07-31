@@ -31,7 +31,9 @@ namespace ChitCore.Common.v1.Dtos
 
         public int ManagerId { get; set; }
 
-        public string Manager { get; set; }        
+        public string ManagerName { get; set; }
+
+        public GetUserDto Manager { get; set; }
 
         public DateTime? AuctionDate { get; set; }
 

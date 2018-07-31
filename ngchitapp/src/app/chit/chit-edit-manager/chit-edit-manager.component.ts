@@ -16,7 +16,7 @@ import { ChitEditComponent } from '../chit-edit/chit-edit.component';
   styleUrls: ['./chit-edit-manager.component.scss']
 })
 export class ChitEditManagerComponent implements OnInit {
-
+  title = 'Add a Manager';
   managerForm: FormGroup;
   managerControl = new FormControl();
   managers: Observable<IGetUser[]>;
@@ -60,6 +60,12 @@ export class ChitEditManagerComponent implements OnInit {
       .data
       .subscribe((data: IGetChit) => { this.chit = data['chitDetails']; console.log(this.chit); },
         (err: ErrorInfo) => { console.log(err); });
+
+    if (this.chit.managerId !== 0) {
+      this.title = 'Change Manager';
+      this.selectedManagers.push(this.chit.manager);
+      this.createManagerForm();
+    }
   }
 
   getUsers(val: string): Observable<IGetUser[]> {

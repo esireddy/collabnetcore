@@ -1,3 +1,5 @@
+import { IGetUser } from '../../user/models/i-get-user';
+
 export interface IGetChit {
     id: number;
     name: string;
@@ -10,6 +12,8 @@ export interface IGetChit {
     statusId: number;
     statusText: string;
     managerId: number;
+    managerName: string;
+    manager: IGetUser;
     auctionDate: string;
     chitUsers: any[];
 }

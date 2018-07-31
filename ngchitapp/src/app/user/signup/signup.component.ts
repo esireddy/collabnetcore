@@ -29,6 +29,7 @@ export class SignupComponent implements OnInit {
 
   onSubmit(signupForm: NgForm): void {
     if (signupForm.valid) {
+      console.log(this.model);
       this.userService
         .createUser(this.model)
         .subscribe(
