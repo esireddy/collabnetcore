@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { ErrorInfo } from '../../500/error-info';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { IGetChit } from '../models/i-get-chit';
 import { CreateChit } from '../models/create-chit';
-
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +12,8 @@ import { CreateChit } from '../models/create-chit';
 export class ChitService {
 
   baseUrl = 'http://localhost:60080/api/chits';
+
+  @Output() refreshChitDetails: EventEmitter<any> =  new EventEmitter();
 
   errorObj = new ErrorInfo();
 
@@ -58,7 +59,9 @@ export class ChitService {
       jsonPatchDoc,
       { headers: new HttpHeaders({ 'Content-Type': 'application/json-patch+json' }) })
       .pipe(
-        catchError(this.handleError)
+        tap(
+          data => this.refreshChitDetails.emit(data),
+          error => this.handleError(error))
       );
   }
 
