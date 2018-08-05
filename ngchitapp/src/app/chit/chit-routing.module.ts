@@ -23,6 +23,7 @@ const chitRoutes: Routes = [
       { path: ':id', component: ChitDetailsComponent, resolve: { chitDetails: ChitDetailsResolveGuard } },
       {
         path: ':id/edit', component: ChitEditComponent,
+        runGuardsAndResolvers: 'always',
         canDeactivate: [ChitEditGuardGuard],
         resolve: { chitDetails: ChitDetailsResolveGuard },
         children: [

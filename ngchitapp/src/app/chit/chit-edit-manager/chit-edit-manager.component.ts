@@ -58,7 +58,12 @@ export class ChitEditManagerComponent implements OnInit {
     this.route
       .parent
       .data
-      .subscribe((data: IGetChit) => { this.chit = data['chitDetails']; console.log(this.chit); },
+      .subscribe((data: IGetChit) => {
+        this.chit = data['chitDetails'];
+        console.clear();
+        console.log('Cleared Console');
+        console.log(this.chit);
+      },
         (err: ErrorInfo) => { console.log(err); });
 
     if (this.chit.managerId !== 0) {
@@ -147,13 +152,15 @@ export class ChitEditManagerComponent implements OnInit {
           this.jsonPatchDoc)
         .subscribe();
 
-      this.parentComponent.reset();
+      setTimeout(() => {
+        this.parentComponent.reset();
 
-      if (this.chit.noOfUsers !== this.chit.chitUsers.length) {
-        this.router.navigate(['/chits', this.chit.id, 'edit', 'users']);
-      } else {
-        this.router.navigate(['/chits']);
-      }
+        if (this.chit.noOfUsers !== this.chit.chitUsers.length) {
+          this.router.navigate(['/chits', this.chit.id, 'edit', 'users']);
+        } else {
+          this.router.navigate(['/chits']);
+        }
+      }, 1000);
     }
   }
 

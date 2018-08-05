@@ -48,7 +48,12 @@ export class ChitEditUsersComponent implements OnInit {
     this.route
       .parent
       .data
-      .subscribe((data: IGetChit) => { this.chit = data['chitDetails']; console.log(this.chit); },
+      .subscribe((data: IGetChit) => {
+        this.chit = data['chitDetails'];
+        console.clear();
+        console.log('Cleared Console');
+        console.log(this.chit);
+      },
         (err: ErrorInfo) => { console.log(err); });
   }
 
